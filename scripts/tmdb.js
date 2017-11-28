@@ -3,6 +3,11 @@ const $ = require("jquery")
 
 const searchBar = function(event){
 
+    $("#movieTitle").on("keypress", function(event) {
+        if (event.keyCode === 13) {
+        $("#searchMovieInformation").click()}
+    })
+
     $("#searchMovieInformation").on("click", event => {
         console.log("search Button is working")
 

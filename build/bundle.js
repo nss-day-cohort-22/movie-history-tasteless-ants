@@ -37157,43 +37157,27 @@ var config = {
 
                 $("#loginDash").on("click", e => {
                     console.log("Login Click button is working")
-                    // Validate login information
-                    this.validate(
-                        // $("#email").val(),
-                        // $("#password").val()
-                    )
-
-                    // Clear the form
-                    $("#email").val("")
-                    $("#password").val("")
-                })
                 // Set up authentication observer
-                observer.init(this)
-            }
-        },
-        "register": {
-            value: function (email, password) {
-                firebase
-                    .auth()
-                    .createUserWithEmailAndPassword(email, password)
-
                 $("#submitRegistration").on("click", e => {
                     console.log("Register Click button is working")
-
-                this.init(
+                    firebase.auth().createUserWithEmailAndPassword($("#email").val(), $("#password").val()).then(function(user) {
+                        var user = firebase.auth().activeUser
+                    })
+                    .catch(function(error) {
+                        // Handle Errors here.
+                        var errorCode = error.code
+                        var errorMessage = error.message
+                        console.log("Error Msg"  + errorMessage)
+                    })
+                })
+                this.validate(
                     $("#email").val(),
                     $("#password").val()
                 )
-                .catch(function(error) {
-
-                    // Handle Errors here.
-                    var errorCode = error.code
-                    var errorMessage = error.message
-                    console.log("Error Msg"  + errorMessage)
-                })
                 // Clear the form
                 $("#email").val("")
                 $("#password").val("")
+                observer.init(this)
             })
         }
     },
@@ -37230,7 +37214,6 @@ const auth = require("./authorization")
 const moviedb = require("./tmdb")
 
 auth.init()
-auth.register()
 auth.logout()
 },{"./authorization":168,"./tmdb":171}],170:[function(require,module,exports){
 const firebase = require("firebase")
@@ -37247,6 +37230,7 @@ const observer = Object.create(null, {
                     console.log("user signed out")
                     auth.activeUser = null
                 }
+                console.log(auth.activeUser)
             })
         }
     }

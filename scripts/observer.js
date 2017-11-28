@@ -12,6 +12,7 @@ const observer = Object.create(null, {
                     console.log("user signed out")
                     auth.activeUser = null
                 }
+                console.log(auth.activeUser)
             })
         }
     }

@@ -1,0 +1,33 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "email": "courtneyseward93@gmail.com",
+            "password": "courtneyseward",
+            "watchedMovies": [],
+            "trackedMovies": []
+        },
+        {
+            "id": 2,
+            "email": "midbosskeith@gmail.com",
+            "password": "keithdavis",
+            "watchedMovies": [],
+            "trackedMovies": []
+
+        },
+        {
+            "id": 3,
+            "email": "mmcpher2@gmail.com",
+            "password": "ryanmcpherson",
+            "watchedMovies": [],
+            "trackedMovies": []
+        },
+        {
+            "id": 4,
+            "email": "jesse.page@me.com",
+            "password": "jessepage",
+            "watchedMovies": [],
+            "trackedMovies": []
+        }
+    ]
+}

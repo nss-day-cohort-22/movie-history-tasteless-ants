@@ -1,6 +1,6 @@
-const moviedb = require("moviedb")("3693ec3ce2f4a35cd73d00f01c34dcce")
+// const moviedb = require("moviedb")("3693ec3ce2f4a35cd73d00f01c34dcce")
 
-module.exports = moviedb
+// module.exports = moviedb
 // $(document).on("load",)
 
 // movieDB = {

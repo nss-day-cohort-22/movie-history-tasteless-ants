@@ -715,7 +715,7 @@ var ServerValue = Database_1.Database.ServerValue;
 exports.ServerValue = ServerValue;
 function registerDatabase(instance) {
     // Register the Database Service with the 'firebase' namespace.
-    var namespace = instance.INTERNAL.registerService('database', function (app, unused, url) { return RepoManager_1.RepoManager.getInstance().databaseFromApp(app, url); }, 
+    var namespace = instance.INTERNAL.registerService('database', function (app, unused, url) { return RepoManager_1.RepoManager.getInstance().databaseFromApp(app, url); },
     // firebase.database namespace properties
     {
         Reference: Reference_1.Reference,
@@ -1298,7 +1298,7 @@ var Query = /** @class */ (function () {
                 deferred.resolve(snapshot);
             }
         };
-        this.on(eventType, onceCallback, 
+        this.on(eventType, onceCallback,
         /*cancel=*/ function (err) {
             _this.off(eventType, onceCallback);
             if (ret.cancel)
@@ -1674,7 +1674,7 @@ var Reference = /** @class */ (function (_super) {
         validation_1.validateFirebaseDataArg('Reference.set', 1, newVal, this.path, false);
         util_2.validateCallback('Reference.set', 2, onComplete, true);
         var deferred = new util_3.Deferred();
-        this.repo.setWithPriority(this.path, newVal, 
+        this.repo.setWithPriority(this.path, newVal,
         /*priority=*/ null, deferred.wrapCallback(onComplete));
         return deferred.promise;
     };
@@ -2200,7 +2200,7 @@ var AuthTokenProvider = /** @class */ (function () {
      * @return {!Promise<FirebaseAuthTokenData>}
      */
     AuthTokenProvider.prototype.getToken = function (forceRefresh) {
-        return this.app_['INTERNAL']['getToken'](forceRefresh).then(null, 
+        return this.app_['INTERNAL']['getToken'](forceRefresh).then(null,
         // .catch
         function (error) {
             // TODO: Need to figure out all the cases this is raised and whether
@@ -2930,10 +2930,10 @@ var PersistentConnection = /** @class */ (function (_super) {
     PersistentConnection.prototype.onDataPush_ = function (action, body) {
         this.log_('handleServerMessage', action, body);
         if (action === 'd')
-            this.onDataUpdate_(body['p'], body['d'], 
+            this.onDataUpdate_(body['p'], body['d'],
             /*isMerge*/ false, body['t']);
         else if (action === 'm')
-            this.onDataUpdate_(body['p'], body['d'], 
+            this.onDataUpdate_(body['p'], body['d'],
             /*isMerge=*/ true, body['t']);
         else if (action === 'c')
             this.onListenRevoked_(body['p'], body['q']);
@@ -3074,7 +3074,7 @@ var PersistentConnection = /** @class */ (function (_super) {
                 if (!canceled_1) {
                     util_4.log('getToken() completed. Creating connection.');
                     self_1.authToken_ = result && result.accessToken;
-                    connection_1 = new Connection_1.Connection(connId_1, self_1.repoInfo_, onDataMessage_1, onReady_1, onDisconnect_1, 
+                    connection_1 = new Connection_1.Connection(connId_1, self_1.repoInfo_, onDataMessage_1, onReady_1, onDisconnect_1,
                     /* onKill= */ function (reason) {
                         util_4.warn(reason + ' (' + self_1.repoInfo_.toString() + ')');
                         self_1.interrupt(SERVER_KILL_INTERRUPT_REASON);
@@ -5902,7 +5902,7 @@ var SyncTree = /** @class */ (function () {
                     // If a listen failed, kill all of the listeners here, not just the one that triggered the error.
                     // Note that this may need to be scoped to just this listener if we change permissions on filtered children
                     var error = util_2.errorForServerCode(status, query);
-                    return _this.removeEventRegistration(query, 
+                    return _this.removeEventRegistration(query,
                     /*eventRegistration*/ null, error);
                 }
             }
@@ -5970,7 +5970,7 @@ var SyncTree = /** @class */ (function () {
         var syncPoint = this.syncPointTree_.get(queryPath);
         util_1.assert(syncPoint, "Missing sync point for query tag that we're tracking");
         var writesCache = this.pendingWriteTree_.childWrites(queryPath);
-        return syncPoint.applyOperation(operation, writesCache, 
+        return syncPoint.applyOperation(operation, writesCache,
         /*serverCache=*/ null);
     };
     /**
@@ -5978,12 +5978,12 @@ var SyncTree = /** @class */ (function () {
      *
      * NOTES:
      * - Descendant SyncPoints will be visited first (since we raise events depth-first).
-  
+
      * - We call applyOperation() on each SyncPoint passing three things:
      *   1. A version of the Operation that has been made relative to the SyncPoint location.
      *   2. A WriteTreeRef of any writes we have cached at the SyncPoint location.
      *   3. A snapshot Node with cached server data, if we have it.
-  
+
      * - We concatenate all of the events returned by each SyncPoint and return the result.
      *
      * @param {!Operation} operation
@@ -5991,7 +5991,7 @@ var SyncTree = /** @class */ (function () {
      * @private
      */
     SyncTree.prototype.applyOperationToSyncPoints_ = function (operation) {
-        return this.applyOperationHelper_(operation, this.syncPointTree_, 
+        return this.applyOperationHelper_(operation, this.syncPointTree_,
         /*serverCache=*/ null, this.pendingWriteTree_.childWrites(Path_1.Path.Empty));
     };
     /**
@@ -6740,8 +6740,8 @@ var AckUserWrite = /** @class */ (function () {
      * @param {!boolean} revert
      */
     function AckUserWrite(
-        /**@inheritDoc */ path, 
-        /**@inheritDoc */ affectedTree, 
+        /**@inheritDoc */ path,
+        /**@inheritDoc */ affectedTree,
         /**@inheritDoc */ revert) {
         this.path = path;
         this.affectedTree = affectedTree;
@@ -6853,8 +6853,8 @@ var util_1 = require("@firebase/util");
  */
 var Merge = /** @class */ (function () {
     function Merge(
-        /**@inheritDoc */ source, 
-        /**@inheritDoc */ path, 
+        /**@inheritDoc */ source,
+        /**@inheritDoc */ path,
         /**@inheritDoc */ children) {
         this.source = source;
         this.path = path;
@@ -6954,22 +6954,22 @@ var OperationSource = /** @class */ (function () {
      * @type {!OperationSource}
      */
     OperationSource.User = new OperationSource(
-    /*fromUser=*/ true, false, null, 
+    /*fromUser=*/ true, false, null,
     /*tagged=*/ false);
     /**
      * @const
      * @type {!OperationSource}
      */
-    OperationSource.Server = new OperationSource(false, 
-    /*fromServer=*/ true, null, 
+    OperationSource.Server = new OperationSource(false,
+    /*fromServer=*/ true, null,
     /*tagged=*/ false);
     /**
      * @param {string} queryId
      * @return {!OperationSource}
      */
     OperationSource.forServerTaggedQuery = function (queryId) {
-        return new OperationSource(false, 
-        /*fromServer=*/ true, queryId, 
+        return new OperationSource(false,
+        /*fromServer=*/ true, queryId,
         /*tagged=*/ true);
     };
     return OperationSource;
@@ -14188,10 +14188,10 @@ var ViewCache = /** @class */ (function () {
      * @const
      * @type {ViewCache}
      */
-    ViewCache.Empty = new ViewCache(new CacheNode_1.CacheNode(ChildrenNode_1.ChildrenNode.EMPTY_NODE, 
-    /*fullyInitialized=*/ false, 
-    /*filtered=*/ false), new CacheNode_1.CacheNode(ChildrenNode_1.ChildrenNode.EMPTY_NODE, 
-    /*fullyInitialized=*/ false, 
+    ViewCache.Empty = new ViewCache(new CacheNode_1.CacheNode(ChildrenNode_1.ChildrenNode.EMPTY_NODE,
+    /*fullyInitialized=*/ false,
+    /*filtered=*/ false), new CacheNode_1.CacheNode(ChildrenNode_1.ChildrenNode.EMPTY_NODE,
+    /*fullyInitialized=*/ false,
     /*filtered=*/ false));
     return ViewCache;
 }());
@@ -18838,7 +18838,7 @@ function registerStorage(instance) {
         Storage: service_1.Service,
         Reference: reference_1.Reference
     };
-    instance.INTERNAL.registerService(STORAGE_TYPE, factory, namespaceExports, undefined, 
+    instance.INTERNAL.registerService(STORAGE_TYPE, factory, namespaceExports, undefined,
     // Allow multiple storage instances per app.
     true);
 }
@@ -20649,7 +20649,7 @@ exports.makeRequest = makeRequest;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var RequestInfo = /** @class */ (function () {
-    function RequestInfo(url, method, 
+    function RequestInfo(url, method,
         /**
            * Returns the value with which to resolve the request's promise. Only called
            * if the request is successful. Throw from this function to reject the
@@ -35237,8 +35237,8 @@ MovieDB.prototype.session = function(fn){
     } else {
       if (res.body.success) {
         self.session_id = res.body.session_id;
-        fn();   
-      } 
+        fn();
+      }
       else fn(res.body);
     }
   });
@@ -35265,10 +35265,10 @@ Object.keys(endpoints.methods).forEach(function(method){
         this.requestToken(function(err){
           if(err) return fn(err);
           execMethod.call(self, met[m].method, params, met[m].resource, fn);
-        });    
+        });
       } else {
         execMethod.call(this, met[m].method, params, met[m].resource, fn);
-      } 
+      }
 
       return this;
     };
@@ -35279,14 +35279,14 @@ var execMethod = function(type, params, endpoint, fn){
   params = params || {};
   endpoint = endpoint.replace(':id', params.id).replace(':season_number', params.season_number).replace(':episode_number', params.episode_number);
   type = type.toUpperCase();
-  
+
   var req = request(type, endpoints.base_url + endpoint)
             .query({api_key : this.api_key, session_id: this.session_id})
             .set('Accept', 'application/json');
-  
+
   if (params.ifNoneMatch) {
     req=req.set('If-None-Match', params.ifNoneMatch);
-    
+
   } else if (params.ifModifiedSince) {
     var t=params.ifModifiedSince;
     if (t.toUTCString) {
@@ -35503,7 +35503,7 @@ process.umask = function() { return 0; };
   var setTimeoutFunc = setTimeout;
 
   function noop() {}
-  
+
   // Polyfill for Function.prototype.bind
   function bind(fn, thisArg) {
     return function () {
@@ -35721,7 +35721,7 @@ process.umask = function() { return 0; };
   Promise._setUnhandledRejectionFn = function _setUnhandledRejectionFn(fn) {
     Promise._unhandledRejectionFn = fn;
   };
-  
+
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = Promise;
   } else if (!root.Promise) {

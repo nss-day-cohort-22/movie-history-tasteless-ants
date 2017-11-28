@@ -35406,6 +35406,7 @@ const $ = require("jquery")
 // const firebase = require("firebase")
 
 const searchBar = function(event){
+
     $("#searchMovieInformation").on("click", event => {
         console.log("search Button is working")
         $.ajax({

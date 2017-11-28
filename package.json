@@ -1,5 +1,5 @@
 {
-  "name": "movie-database-tasteless-ants",
+  "name": "movie-history-tasteless-ants",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mmcpher2/movie-database-tasteless-ants.git"
+    "url": "git+https://github.com/nss-day-cohort-22/movie-history-tasteless-ants.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mmcpher2/movie-database-tasteless-ants/issues"
+    "url": "https://github.com/nss-day-cohort-22/movie-history-tasteless-ants/issues"
   },
-  "homepage": "https://github.com/mmcpher2/movie-database-tasteless-ants#readme",
+  "homepage": "https://github.com/nss-day-cohort-22/movie-history-tasteless-ants#readme",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.2.0",
@@ -24,6 +24,8 @@
     "gruntify-eslint": "^4.0.0"
   },
   "dependencies": {
-    "eslint": "^4.12.0"
+    "eslint": "^4.12.0",
+    "firebase": "^4.6.2",
+    "jquery": "^3.2.1"
   }
 }

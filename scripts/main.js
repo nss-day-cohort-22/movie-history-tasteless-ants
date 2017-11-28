@@ -1,6 +1,6 @@
-
-const auth = require("./authorization")
-const moviedb = require("./tmdb")
+const auth = require("./auth/authorization")
+const searchBar = require("./tmdb")
 
 auth.init()
 auth.logout()
+searchBar()

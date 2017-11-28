@@ -11,12 +11,12 @@
             <h1>Movie History</h1>
         </header>
         <form id="regForm">
-            <div >Email address *</div>
-            <input id="email"type="text" name="email" required>
+            <!-- <div >Email address *</div> -->
+            <input id="email"type="text" placeholder="Enter Email" required>
             <br>
             <br>
-            <div >Password *</div>
-            <input id="password" type="password" name="password" required>
+            <!-- <div >Password *</div> -->
+            <input id="password" type="password" placeholder="Enter Password" required>
         </form>
 
         <div id="whichButton">
@@ -32,6 +32,32 @@
                     <li id="watched-movies"><a href="#">Show Unwatched</a></li>
                 </ul>
             </nav>
+
+            <!-- Container that holds the information we want to get from our Movie API -->
+            <div class="container">
+                <h1>Movies</h1>
+                    <section id="fetch">
+                        <input type="text" placeholder="Enter a movie title" id="movieTitle" />
+                        <button id="searchMovieInformation">Movie Information</button>
+                        <!-- List of items we want -->
+                    </section>
+                    <!-- Movie Name  -->
+                    <section id="movieName">
+                    </section>
+                    <!-- Year Released  -->
+                    <section id="yearReleased">
+                    </section>
+                    <!-- List of Major Actors -->
+                    <section id="listOfMajorActors">
+                    </section>
+                    <!-- Movie Poster -->
+                    <section id="moviePoster">
+                    </section>
+                    <!-- User rates the movie on a scale of 1 to 5  -->
+                    <section id="rating">
+                    </section>
+                </div>
+                <!-- Container ends -->
 
             <footer></footer>
             <script src='build/bundle.js'></script>

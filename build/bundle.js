@@ -715,7 +715,7 @@ var ServerValue = Database_1.Database.ServerValue;
 exports.ServerValue = ServerValue;
 function registerDatabase(instance) {
     // Register the Database Service with the 'firebase' namespace.
-    var namespace = instance.INTERNAL.registerService('database', function (app, unused, url) { return RepoManager_1.RepoManager.getInstance().databaseFromApp(app, url); },
+    var namespace = instance.INTERNAL.registerService('database', function (app, unused, url) { return RepoManager_1.RepoManager.getInstance().databaseFromApp(app, url); }, 
     // firebase.database namespace properties
     {
         Reference: Reference_1.Reference,
@@ -1298,7 +1298,7 @@ var Query = /** @class */ (function () {
                 deferred.resolve(snapshot);
             }
         };
-        this.on(eventType, onceCallback,
+        this.on(eventType, onceCallback, 
         /*cancel=*/ function (err) {
             _this.off(eventType, onceCallback);
             if (ret.cancel)
@@ -1674,7 +1674,7 @@ var Reference = /** @class */ (function (_super) {
         validation_1.validateFirebaseDataArg('Reference.set', 1, newVal, this.path, false);
         util_2.validateCallback('Reference.set', 2, onComplete, true);
         var deferred = new util_3.Deferred();
-        this.repo.setWithPriority(this.path, newVal,
+        this.repo.setWithPriority(this.path, newVal, 
         /*priority=*/ null, deferred.wrapCallback(onComplete));
         return deferred.promise;
     };
@@ -2200,7 +2200,7 @@ var AuthTokenProvider = /** @class */ (function () {
      * @return {!Promise<FirebaseAuthTokenData>}
      */
     AuthTokenProvider.prototype.getToken = function (forceRefresh) {
-        return this.app_['INTERNAL']['getToken'](forceRefresh).then(null,
+        return this.app_['INTERNAL']['getToken'](forceRefresh).then(null, 
         // .catch
         function (error) {
             // TODO: Need to figure out all the cases this is raised and whether
@@ -2930,10 +2930,10 @@ var PersistentConnection = /** @class */ (function (_super) {
     PersistentConnection.prototype.onDataPush_ = function (action, body) {
         this.log_('handleServerMessage', action, body);
         if (action === 'd')
-            this.onDataUpdate_(body['p'], body['d'],
+            this.onDataUpdate_(body['p'], body['d'], 
             /*isMerge*/ false, body['t']);
         else if (action === 'm')
-            this.onDataUpdate_(body['p'], body['d'],
+            this.onDataUpdate_(body['p'], body['d'], 
             /*isMerge=*/ true, body['t']);
         else if (action === 'c')
             this.onListenRevoked_(body['p'], body['q']);
@@ -3074,7 +3074,7 @@ var PersistentConnection = /** @class */ (function (_super) {
                 if (!canceled_1) {
                     util_4.log('getToken() completed. Creating connection.');
                     self_1.authToken_ = result && result.accessToken;
-                    connection_1 = new Connection_1.Connection(connId_1, self_1.repoInfo_, onDataMessage_1, onReady_1, onDisconnect_1,
+                    connection_1 = new Connection_1.Connection(connId_1, self_1.repoInfo_, onDataMessage_1, onReady_1, onDisconnect_1, 
                     /* onKill= */ function (reason) {
                         util_4.warn(reason + ' (' + self_1.repoInfo_.toString() + ')');
                         self_1.interrupt(SERVER_KILL_INTERRUPT_REASON);
@@ -5902,7 +5902,7 @@ var SyncTree = /** @class */ (function () {
                     // If a listen failed, kill all of the listeners here, not just the one that triggered the error.
                     // Note that this may need to be scoped to just this listener if we change permissions on filtered children
                     var error = util_2.errorForServerCode(status, query);
-                    return _this.removeEventRegistration(query,
+                    return _this.removeEventRegistration(query, 
                     /*eventRegistration*/ null, error);
                 }
             }
@@ -5970,7 +5970,7 @@ var SyncTree = /** @class */ (function () {
         var syncPoint = this.syncPointTree_.get(queryPath);
         util_1.assert(syncPoint, "Missing sync point for query tag that we're tracking");
         var writesCache = this.pendingWriteTree_.childWrites(queryPath);
-        return syncPoint.applyOperation(operation, writesCache,
+        return syncPoint.applyOperation(operation, writesCache, 
         /*serverCache=*/ null);
     };
     /**
@@ -5978,12 +5978,12 @@ var SyncTree = /** @class */ (function () {
      *
      * NOTES:
      * - Descendant SyncPoints will be visited first (since we raise events depth-first).
-
+  
      * - We call applyOperation() on each SyncPoint passing three things:
      *   1. A version of the Operation that has been made relative to the SyncPoint location.
      *   2. A WriteTreeRef of any writes we have cached at the SyncPoint location.
      *   3. A snapshot Node with cached server data, if we have it.
-
+  
      * - We concatenate all of the events returned by each SyncPoint and return the result.
      *
      * @param {!Operation} operation
@@ -5991,7 +5991,7 @@ var SyncTree = /** @class */ (function () {
      * @private
      */
     SyncTree.prototype.applyOperationToSyncPoints_ = function (operation) {
-        return this.applyOperationHelper_(operation, this.syncPointTree_,
+        return this.applyOperationHelper_(operation, this.syncPointTree_, 
         /*serverCache=*/ null, this.pendingWriteTree_.childWrites(Path_1.Path.Empty));
     };
     /**
@@ -6740,8 +6740,8 @@ var AckUserWrite = /** @class */ (function () {
      * @param {!boolean} revert
      */
     function AckUserWrite(
-        /**@inheritDoc */ path,
-        /**@inheritDoc */ affectedTree,
+        /**@inheritDoc */ path, 
+        /**@inheritDoc */ affectedTree, 
         /**@inheritDoc */ revert) {
         this.path = path;
         this.affectedTree = affectedTree;
@@ -6853,8 +6853,8 @@ var util_1 = require("@firebase/util");
  */
 var Merge = /** @class */ (function () {
     function Merge(
-        /**@inheritDoc */ source,
-        /**@inheritDoc */ path,
+        /**@inheritDoc */ source, 
+        /**@inheritDoc */ path, 
         /**@inheritDoc */ children) {
         this.source = source;
         this.path = path;
@@ -6954,22 +6954,22 @@ var OperationSource = /** @class */ (function () {
      * @type {!OperationSource}
      */
     OperationSource.User = new OperationSource(
-    /*fromUser=*/ true, false, null,
+    /*fromUser=*/ true, false, null, 
     /*tagged=*/ false);
     /**
      * @const
      * @type {!OperationSource}
      */
-    OperationSource.Server = new OperationSource(false,
-    /*fromServer=*/ true, null,
+    OperationSource.Server = new OperationSource(false, 
+    /*fromServer=*/ true, null, 
     /*tagged=*/ false);
     /**
      * @param {string} queryId
      * @return {!OperationSource}
      */
     OperationSource.forServerTaggedQuery = function (queryId) {
-        return new OperationSource(false,
-        /*fromServer=*/ true, queryId,
+        return new OperationSource(false, 
+        /*fromServer=*/ true, queryId, 
         /*tagged=*/ true);
     };
     return OperationSource;
@@ -14188,10 +14188,10 @@ var ViewCache = /** @class */ (function () {
      * @const
      * @type {ViewCache}
      */
-    ViewCache.Empty = new ViewCache(new CacheNode_1.CacheNode(ChildrenNode_1.ChildrenNode.EMPTY_NODE,
-    /*fullyInitialized=*/ false,
-    /*filtered=*/ false), new CacheNode_1.CacheNode(ChildrenNode_1.ChildrenNode.EMPTY_NODE,
-    /*fullyInitialized=*/ false,
+    ViewCache.Empty = new ViewCache(new CacheNode_1.CacheNode(ChildrenNode_1.ChildrenNode.EMPTY_NODE, 
+    /*fullyInitialized=*/ false, 
+    /*filtered=*/ false), new CacheNode_1.CacheNode(ChildrenNode_1.ChildrenNode.EMPTY_NODE, 
+    /*fullyInitialized=*/ false, 
     /*filtered=*/ false));
     return ViewCache;
 }());
@@ -16949,7 +16949,7 @@ exports.WebSocketConnection = WebSocketConnection;
 
 
 }).call(this,require('_process'))
-},{"../core/stats/StatsManager":47,"../core/storage/storage":51,"../core/util/util":63,"./Constants":82,"@firebase/app":1,"@firebase/util":134,"_process":162}],85:[function(require,module,exports){
+},{"../core/stats/StatsManager":47,"../core/storage/storage":51,"../core/util/util":63,"./Constants":82,"@firebase/app":1,"@firebase/util":134,"_process":158}],85:[function(require,module,exports){
 "use strict";
 /**
  * Copyright 2017 Google Inc.
@@ -18677,7 +18677,7 @@ if (typeof Promise === 'undefined') {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"promise-polyfill":163}],99:[function(require,module,exports){
+},{"promise-polyfill":159}],99:[function(require,module,exports){
 /**
  * Copyright 2017 Google Inc.
  *
@@ -18838,7 +18838,7 @@ function registerStorage(instance) {
         Storage: service_1.Service,
         Reference: reference_1.Reference
     };
-    instance.INTERNAL.registerService(STORAGE_TYPE, factory, namespaceExports, undefined,
+    instance.INTERNAL.registerService(STORAGE_TYPE, factory, namespaceExports, undefined, 
     // Allow multiple storage instances per app.
     true);
 }
@@ -20649,7 +20649,7 @@ exports.makeRequest = makeRequest;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var RequestInfo = /** @class */ (function () {
-    function RequestInfo(url, method,
+    function RequestInfo(url, method, 
         /**
            * Returns the value with which to resolve the request's promise. Only called
            * if the request is successful. Throw from this function to reject the
@@ -24499,171 +24499,6 @@ exports.validateContextObject = validateContextObject;
 
 
 },{}],151:[function(require,module,exports){
-
-/**
- * Expose `Emitter`.
- */
-
-if (typeof module !== 'undefined') {
-  module.exports = Emitter;
-}
-
-/**
- * Initialize a new `Emitter`.
- *
- * @api public
- */
-
-function Emitter(obj) {
-  if (obj) return mixin(obj);
-};
-
-/**
- * Mixin the emitter properties.
- *
- * @param {Object} obj
- * @return {Object}
- * @api private
- */
-
-function mixin(obj) {
-  for (var key in Emitter.prototype) {
-    obj[key] = Emitter.prototype[key];
-  }
-  return obj;
-}
-
-/**
- * Listen on the given `event` with `fn`.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.on =
-Emitter.prototype.addEventListener = function(event, fn){
-  this._callbacks = this._callbacks || {};
-  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
-    .push(fn);
-  return this;
-};
-
-/**
- * Adds an `event` listener that will be invoked a single
- * time then automatically removed.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.once = function(event, fn){
-  function on() {
-    this.off(event, on);
-    fn.apply(this, arguments);
-  }
-
-  on.fn = fn;
-  this.on(event, on);
-  return this;
-};
-
-/**
- * Remove the given callback for `event` or all
- * registered callbacks.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.off =
-Emitter.prototype.removeListener =
-Emitter.prototype.removeAllListeners =
-Emitter.prototype.removeEventListener = function(event, fn){
-  this._callbacks = this._callbacks || {};
-
-  // all
-  if (0 == arguments.length) {
-    this._callbacks = {};
-    return this;
-  }
-
-  // specific event
-  var callbacks = this._callbacks['$' + event];
-  if (!callbacks) return this;
-
-  // remove all handlers
-  if (1 == arguments.length) {
-    delete this._callbacks['$' + event];
-    return this;
-  }
-
-  // remove specific handler
-  var cb;
-  for (var i = 0; i < callbacks.length; i++) {
-    cb = callbacks[i];
-    if (cb === fn || cb.fn === fn) {
-      callbacks.splice(i, 1);
-      break;
-    }
-  }
-  return this;
-};
-
-/**
- * Emit `event` with the given args.
- *
- * @param {String} event
- * @param {Mixed} ...
- * @return {Emitter}
- */
-
-Emitter.prototype.emit = function(event){
-  this._callbacks = this._callbacks || {};
-  var args = [].slice.call(arguments, 1)
-    , callbacks = this._callbacks['$' + event];
-
-  if (callbacks) {
-    callbacks = callbacks.slice(0);
-    for (var i = 0, len = callbacks.length; i < len; ++i) {
-      callbacks[i].apply(this, args);
-    }
-  }
-
-  return this;
-};
-
-/**
- * Return array of callbacks for `event`.
- *
- * @param {String} event
- * @return {Array}
- * @api public
- */
-
-Emitter.prototype.listeners = function(event){
-  this._callbacks = this._callbacks || {};
-  return this._callbacks['$' + event] || [];
-};
-
-/**
- * Check if this emitter has `event` handlers.
- *
- * @param {String} event
- * @return {Boolean}
- * @api public
- */
-
-Emitter.prototype.hasListeners = function(event){
-  return !! this.listeners(event).length;
-};
-
-},{}],152:[function(require,module,exports){
 /**
  * Copyright 2017 Google Inc.
  *
@@ -24683,7 +24518,7 @@ Emitter.prototype.hasListeners = function(event){
 require('@firebase/polyfill');
 module.exports = require('@firebase/app').default;
 
-},{"@firebase/app":1,"@firebase/polyfill":97}],153:[function(require,module,exports){
+},{"@firebase/app":1,"@firebase/polyfill":97}],152:[function(require,module,exports){
 /**
  * Copyright 2017 Google Inc.
  *
@@ -24702,7 +24537,7 @@ module.exports = require('@firebase/app').default;
 
 require('@firebase/auth');
 
-},{"@firebase/auth":3}],154:[function(require,module,exports){
+},{"@firebase/auth":3}],153:[function(require,module,exports){
 /**
  * Copyright 2017 Google Inc.
  *
@@ -24721,7 +24556,7 @@ require('@firebase/auth');
 
 module.exports = require('@firebase/database');
 
-},{"@firebase/database":4}],155:[function(require,module,exports){
+},{"@firebase/database":4}],154:[function(require,module,exports){
 /**
  * Copyright 2017 Google Inc.
  *
@@ -24746,7 +24581,7 @@ require('./storage');
 
 module.exports = firebase;
 
-},{"./app":152,"./auth":153,"./database":154,"./messaging":156,"./storage":157}],156:[function(require,module,exports){
+},{"./app":151,"./auth":152,"./database":153,"./messaging":155,"./storage":156}],155:[function(require,module,exports){
 /**
  * Copyright 2017 Google Inc.
  *
@@ -24765,7 +24600,7 @@ module.exports = firebase;
 
 require('@firebase/messaging');
 
-},{"@firebase/messaging":86}],157:[function(require,module,exports){
+},{"@firebase/messaging":86}],156:[function(require,module,exports){
 /**
  * Copyright 2017 Google Inc.
  *
@@ -24784,7 +24619,7 @@ require('@firebase/messaging');
 
 require('@firebase/storage');
 
-},{"@firebase/storage":101}],158:[function(require,module,exports){
+},{"@firebase/storage":101}],157:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.2.1
  * https://jquery.com/
@@ -35039,277 +34874,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{}],159:[function(require,module,exports){
-
-module.exports = require('./lib/moviedb');
-
-},{"./lib/moviedb":161}],160:[function(require,module,exports){
-module.exports={
-    "base_url": "https://api.themoviedb.org/3/"
-  , "authentication" : {
-        "requestToken" : "authentication/token/new"
-      , "session" : "authentication/session/new"
-    }
-  , "methods" : {
-        "configuration" : {
-            "": { "resource":"configuration", "method": "get" }
-        }
-      , "find" : {
-            "" : { "resource": "find/:id", "method": "get" }
-      	}
-      , "search" : {
-            "Movie" : { "resource": "search/movie", "method": "get" }
-          , "Tv" : { "resource": "search/tv", "method": "get" }
-          , "Multi" : { "resource": "search/multi", "method": "get" }
-          , "Collection"  : { "resource": "search/collection", "method": "get" }
-          , "Person"  : { "resource": "search/person", "method": "get" }
-          , "List"  : { "resource": "search/list", "method": "get" }
-          , "Company"  : { "resource": "search/company", "method": "get" }
-          , "Keyword"  : { "resource": "search/keyword", "method": "get" }
-        }
-      , "collection" : {
-            "Info"  : { "resource": "collection/:id", "method": "get" }
-          , "Images"  : { "resource": "collection/:id/images", "method": "get" }
-        }
-      , "discover" : {
-            "Movie" : { "resource": "discover/movie", "method": "get" }
-          , "Tv" : { "resource": "discover/tv", "method": "get" }
-      }
-      , "movie" : {
-            "Info" : { "resource": "movie/:id", "method": "get" }
-          , "AlternativeTitles" : { "resource": "movie/:id/alternative_titles", "method": "get" }
-          , "Credits" : { "resource": "movie/:id/credits", "method": "get" }
-          , "Images" : { "resource": "movie/:id/images", "method": "get" }
-          , "Videos" : { "resource": "movie/:id/videos", "method": "get" }
-          , "Keywords" : { "resource": "movie/:id/keywords", "method": "get" }
-          , "Releases" : { "resource":"movie/:id/releases", "method": "get" }
-          , "ReleaseDates" : { "resource":"movie/:id/release_dates", "method": "get" }
-          , "Trailers" : { "resource": "movie/:id/trailers", "method": "get" }
-          , "Translations" : { "resource": "movie/:id/translations", "method": "get" }
-          , "Similar" : { "resource": "movie/:id/similar_movies", "method": "get" }
-          , "Reviews" : { "resource": "movie/:id/reviews", "method": "get" }
-          , "Lists" : { "resource": "movie/:id/lists", "method": "get" }
-          , "Changes" : { "resource": "movie/:id/changes", "method": "get" }
-          , "RatingUpdate" : { "resource": "movie/:id/rating", "method": "post" }
-        }
-      , "tv" : {
-            "Info" : { "resource": "tv/:id", "method": "get" }
-          , "Credits" : { "resource": "tv/:id/credits", "method": "get" }
-          , "ExternalIds" : { "resource": "tv/:id/external_ids", "method": "get" }
-          , "Images" : { "resource": "tv/:id/images", "method": "get" }
-          , "Videos" : { "resource": "tv/:id/videos", "method": "get" }
-          , "Similar" : { "resource": "tv/:id/similar", "method": "get" }
-          , "Translations" : { "resource": "tv/:id/translations", "method": "get" }
-          , "SeasonInfo" : { "resource": "tv/:id/season/:season_number", "method": "get" }
-          , "SeasonCredits" : { "resource": "tv/:id/season/:season_number/credits", "method": "get" }
-          , "SeasonVideos" : { "resource": "tv/:id/season/:season_number/videos", "method": "get" }
-          , "SeasonExternalIds" : { "resource": "tv/:id/season/:season_number/external_ids", "method": "get" }
-          , "SeasonImages" : { "resource": "tv/:id/season/:season_number/images", "method": "get" }
-          , "EpisodeInfo" : { "resource": "tv/:id/season/:season_number/episode/:episode_number", "method": "get" }
-          , "EpisodeCredits" : { "resource": "tv/:id/season/:season_number/episode/:episode_number/credits", "method": "get" }
-          , "EpisodeExternalIds" : { "resource": "tv/:id/season/:season_number/episode/:episode_number/external_ids", "method": "get" }
-          , "EpisodeImages" : { "resource": "tv/:id/season/:season_number/episode/:episode_number/images", "method": "get" }
-          , "OnTheAir" : { "resource": "tv/on_the_air", "method": "get" }
-          , "AiringToday" : { "resource": "tv/airing_today", "method": "get" }
-          , "Recommend" : { "resource": "tv/:id/recommendations", "method": "get" }
-          , "Changes" : { "resource": "tv/:id/changes", "method": "get" }
-         }
-      , "person" : {
-            "Info" : { "resource": "person/:id", "method": "get" }
-          , "MovieCredits" : { "resource": "person/:id/movie_credits", "method": "get" }
-          , "TvCredits" : { "resource": "person/:id/tv_credits", "method": "get" }
-          , "CombinedCredits" : { "resource": "person/:id/combined_credits", "method": "get" }
-          , "Images" : { "resource": "person/:id/images", "method": "get" }
-          , "TaggedImages" : { "resource": "person/:id/tagged_images", "method": "get" }
-          , "Changes" : { "resource": "person/:id/changes", "method": "get" }
-          , "Latest" : { "resource": "person/latest", "method": "get" }
-          , "Popular" : { "resource": "person/popular", "method": "get" }
-          , "ExternalIds" : { "resource": "person/:id/external_ids", "method": "get" }
-        }
-      , "credit" : {
-            "Info" : { "resource": "credit/:id", "method": "get" }
-        }
-      , "list" : {
-            "Info" : { "resource": "list/:id", "method": "get" }
-        }
-      , "genre" : {
-            "MovieList" : { "resource": "genre/movie/list", "method": "get" }
-          , "TvList" : { "resource": "genre/tv/list", "method": "get" }
-          , "Movies" : { "resource": "genre/:id/movies", "method": "get" }
-        }
-      , "keyword" : {
-            "Info" : { "resource": "keyword/:id", "method": "get" }
-          , "Movies" : { "resource": "keyword/:id/movies", "method": "get" }
-        }
-      , "company" : {
-            "Info" : { "resource": "company/:id", "method": "get" }
-          , "Movies" : { "resource": "company/:id/movies", "method": "get" }
-        }
-      , "account" : {
-            "Info" : { "resource": "account", "method": "get" }
-          , "Lists" : { "resource": "account/:id/lists", "method": "get" }
-          , "FavoriteMovies" : { "resource": "account/:id/favorite_movies", "method": "get" }
-          , "FavoriteUpdate" : { "resource": "account/:id/favorite", "method": "post" }
-          , "RatedMovies" : { "resource": "account/:id/rated_movies", "method": "get" }
-          , "MovieWatchlist" : { "resource": "account/:id/watchlist/movies", "method": "get" }
-          , "TvWatchlist" : { "resource": "account/:id/watchlist/tv", "method": "get" }
-          , "WatchlistUpdate" : { "resource": "account/:id/watchlist", "method": "post" }
-        }
-      , "misc" : {
-            "LatestMovies"  : { "resource": "movie/latest", "method": "get" }
-          , "UpcomingMovies" : { "resource": "movie/upcoming", "method": "get" }
-          , "NowPlayingMovies" : { "resource": "movie/now_playing", "method": "get" }
-          , "PopularMovies" : { "resource": "movie/popular", "method": "get" }
-          , "TopRatedMovies" : { "resource": "movie/top_rated", "method": "get" }
-          , "ChangedMovies" : { "resource": "movie/changes", "method": "get" }
-          , "ChangedTvs" : { "resource": "tv/changes", "method": "get" }
-          , "ChangedPeople" : { "resource": "person/changes", "method": "get" }
-          , "TopRatedTvs" : { "resource": "tv/top_rated", "method": "get" }
-          , "PopularTvs" : { "resource": "tv/popular", "method": "get" }
-      }
-    }
-}
-
-},{}],161:[function(require,module,exports){
-
-/*
- * Module dependencies
- */
-
-var request = require('superagent');
-var endpoints = require('./endpoints.json');
-
-/*
- * Exports the constructor
- */
-
-module.exports = function(api_key, base_url) {
-  if(api_key) return new MovieDB(api_key, base_url);
-  else throw new Error('Bad api key');
-};
-
-/*
- * Constructor
- */
-
-function MovieDB(api_key, base_url) {
-  this.api_key = api_key;
-  if(base_url) endpoints.base_url = base_url;
-  return this;
-}
-
-/*
- * API request token
- */
-
-MovieDB.prototype.requestToken = function(fn){
-  var self = this;
-
-  request
-  .get(endpoints.base_url  + endpoints.authentication.requestToken)
-  .query({'api_key': self.api_key})
-  .set('Accept', 'application/json')
-  .end(function(err, res){
-    if(err) {
-      fn(err);
-    } else {
-      self.token = res.body;
-      fn();
-    }
-  });
-
-  return this;
-};
-
-/*
- * API session
- */
-
-MovieDB.prototype.session = function(fn){
-  var self = this;
-  request
-  .get(endpoints.base_url  + endpoints.authentication.session)
-  .query({'api_key': self.api_key, 'request_token': self.token.request_token})
-  .set('Accept', 'application/json')
-  .end(function(err, res){
-    if(err) {
-      fn(err);
-    } else {
-      if (res.body.success) {
-        self.session_id = res.body.session_id;
-        fn();
-      }
-      else fn(res.body);
-    }
-  });
-
-  return this;
-};
-
-/*
- * Generate API methods
- */
-
-Object.keys(endpoints.methods).forEach(function(method){
-  var met = endpoints.methods[method];
-  Object.keys(met).forEach(function(m){
-    MovieDB.prototype[method + m] = function(params, fn){
-      var self = this;
-
-      if("function" == typeof params) {
-        fn = params;
-        params = {};
-      }
-
-      if(!this.token || Date.now() > +new Date(this.token.expires_at)) {
-        this.requestToken(function(err){
-          if(err) return fn(err);
-          execMethod.call(self, met[m].method, params, met[m].resource, fn);
-        });
-      } else {
-        execMethod.call(this, met[m].method, params, met[m].resource, fn);
-      }
-
-      return this;
-    };
-  });
-});
-
-var execMethod = function(type, params, endpoint, fn){
-  params = params || {};
-  endpoint = endpoint.replace(':id', params.id).replace(':season_number', params.season_number).replace(':episode_number', params.episode_number);
-  type = type.toUpperCase();
-
-  var req = request(type, endpoints.base_url + endpoint)
-            .query({api_key : this.api_key, session_id: this.session_id})
-            .set('Accept', 'application/json');
-
-  if (params.ifNoneMatch) {
-    req=req.set('If-None-Match', params.ifNoneMatch);
-
-  } else if (params.ifModifiedSince) {
-    var t=params.ifModifiedSince;
-    if (t.toUTCString) {
-      t=t.toUTCString();
-    }
-    req=req.set('If-Modified-Since', t);
-  }
-
-  if(type === 'GET')
-    req.query(params);
-  else
-    req.send(params);
-
-  req.end(function(err, res){
-    if(err){
-      fn(err, null, res);
-    } else {
-      fn(null, res.body, res);
-    }
-  });
-};
-
-},{"./endpoints.json":160,"superagent":164}],162:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -35495,7 +35060,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],163:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 (function (root) {
 
   // Store setTimeout reference so promise-polyfill will be unaffected by
@@ -35503,7 +35068,7 @@ process.umask = function() { return 0; };
   var setTimeoutFunc = setTimeout;
 
   function noop() {}
-
+  
   // Polyfill for Function.prototype.bind
   function bind(fn, thisArg) {
     return function () {
@@ -35721,7 +35286,7 @@ process.umask = function() { return 0; };
   Promise._setUnhandledRejectionFn = function _setUnhandledRejectionFn(fn) {
     Promise._unhandledRejectionFn = fn;
   };
-
+  
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = Promise;
   } else if (!root.Promise) {
@@ -35730,1408 +35295,7 @@ process.umask = function() { return 0; };
 
 })(this);
 
-},{}],164:[function(require,module,exports){
-/**
- * Root reference for iframes.
- */
-
-var root;
-if (typeof window !== 'undefined') { // Browser window
-  root = window;
-} else if (typeof self !== 'undefined') { // Web Worker
-  root = self;
-} else { // Other environments
-  console.warn("Using browser-only version of superagent in non-browser environment");
-  root = this;
-}
-
-var Emitter = require('emitter');
-var requestBase = require('./request-base');
-var isObject = require('./is-object');
-
-/**
- * Noop.
- */
-
-function noop(){};
-
-/**
- * Expose `request`.
- */
-
-var request = module.exports = require('./request').bind(null, Request);
-
-/**
- * Determine XHR.
- */
-
-request.getXHR = function () {
-  if (root.XMLHttpRequest
-      && (!root.location || 'file:' != root.location.protocol
-          || !root.ActiveXObject)) {
-    return new XMLHttpRequest;
-  } else {
-    try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch(e) {}
-    try { return new ActiveXObject('Msxml2.XMLHTTP.6.0'); } catch(e) {}
-    try { return new ActiveXObject('Msxml2.XMLHTTP.3.0'); } catch(e) {}
-    try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch(e) {}
-  }
-  throw Error("Browser-only verison of superagent could not find XHR");
-};
-
-/**
- * Removes leading and trailing whitespace, added to support IE.
- *
- * @param {String} s
- * @return {String}
- * @api private
- */
-
-var trim = ''.trim
-  ? function(s) { return s.trim(); }
-  : function(s) { return s.replace(/(^\s*|\s*$)/g, ''); };
-
-/**
- * Serialize the given `obj`.
- *
- * @param {Object} obj
- * @return {String}
- * @api private
- */
-
-function serialize(obj) {
-  if (!isObject(obj)) return obj;
-  var pairs = [];
-  for (var key in obj) {
-    pushEncodedKeyValuePair(pairs, key, obj[key]);
-  }
-  return pairs.join('&');
-}
-
-/**
- * Helps 'serialize' with serializing arrays.
- * Mutates the pairs array.
- *
- * @param {Array} pairs
- * @param {String} key
- * @param {Mixed} val
- */
-
-function pushEncodedKeyValuePair(pairs, key, val) {
-  if (val != null) {
-    if (Array.isArray(val)) {
-      val.forEach(function(v) {
-        pushEncodedKeyValuePair(pairs, key, v);
-      });
-    } else if (isObject(val)) {
-      for(var subkey in val) {
-        pushEncodedKeyValuePair(pairs, key + '[' + subkey + ']', val[subkey]);
-      }
-    } else {
-      pairs.push(encodeURIComponent(key)
-        + '=' + encodeURIComponent(val));
-    }
-  } else if (val === null) {
-    pairs.push(encodeURIComponent(key));
-  }
-}
-
-/**
- * Expose serialization method.
- */
-
- request.serializeObject = serialize;
-
- /**
-  * Parse the given x-www-form-urlencoded `str`.
-  *
-  * @param {String} str
-  * @return {Object}
-  * @api private
-  */
-
-function parseString(str) {
-  var obj = {};
-  var pairs = str.split('&');
-  var pair;
-  var pos;
-
-  for (var i = 0, len = pairs.length; i < len; ++i) {
-    pair = pairs[i];
-    pos = pair.indexOf('=');
-    if (pos == -1) {
-      obj[decodeURIComponent(pair)] = '';
-    } else {
-      obj[decodeURIComponent(pair.slice(0, pos))] =
-        decodeURIComponent(pair.slice(pos + 1));
-    }
-  }
-
-  return obj;
-}
-
-/**
- * Expose parser.
- */
-
-request.parseString = parseString;
-
-/**
- * Default MIME type map.
- *
- *     superagent.types.xml = 'application/xml';
- *
- */
-
-request.types = {
-  html: 'text/html',
-  json: 'application/json',
-  xml: 'application/xml',
-  urlencoded: 'application/x-www-form-urlencoded',
-  'form': 'application/x-www-form-urlencoded',
-  'form-data': 'application/x-www-form-urlencoded'
-};
-
-/**
- * Default serialization map.
- *
- *     superagent.serialize['application/xml'] = function(obj){
- *       return 'generated xml here';
- *     };
- *
- */
-
- request.serialize = {
-   'application/x-www-form-urlencoded': serialize,
-   'application/json': JSON.stringify
- };
-
- /**
-  * Default parsers.
-  *
-  *     superagent.parse['application/xml'] = function(str){
-  *       return { object parsed from str };
-  *     };
-  *
-  */
-
-request.parse = {
-  'application/x-www-form-urlencoded': parseString,
-  'application/json': JSON.parse
-};
-
-/**
- * Parse the given header `str` into
- * an object containing the mapped fields.
- *
- * @param {String} str
- * @return {Object}
- * @api private
- */
-
-function parseHeader(str) {
-  var lines = str.split(/\r?\n/);
-  var fields = {};
-  var index;
-  var line;
-  var field;
-  var val;
-
-  lines.pop(); // trailing CRLF
-
-  for (var i = 0, len = lines.length; i < len; ++i) {
-    line = lines[i];
-    index = line.indexOf(':');
-    field = line.slice(0, index).toLowerCase();
-    val = trim(line.slice(index + 1));
-    fields[field] = val;
-  }
-
-  return fields;
-}
-
-/**
- * Check if `mime` is json or has +json structured syntax suffix.
- *
- * @param {String} mime
- * @return {Boolean}
- * @api private
- */
-
-function isJSON(mime) {
-  return /[\/+]json\b/.test(mime);
-}
-
-/**
- * Return the mime type for the given `str`.
- *
- * @param {String} str
- * @return {String}
- * @api private
- */
-
-function type(str){
-  return str.split(/ *; */).shift();
-};
-
-/**
- * Return header field parameters.
- *
- * @param {String} str
- * @return {Object}
- * @api private
- */
-
-function params(str){
-  return str.split(/ *; */).reduce(function(obj, str){
-    var parts = str.split(/ *= */),
-        key = parts.shift(),
-        val = parts.shift();
-
-    if (key && val) obj[key] = val;
-    return obj;
-  }, {});
-};
-
-/**
- * Initialize a new `Response` with the given `xhr`.
- *
- *  - set flags (.ok, .error, etc)
- *  - parse header
- *
- * Examples:
- *
- *  Aliasing `superagent` as `request` is nice:
- *
- *      request = superagent;
- *
- *  We can use the promise-like API, or pass callbacks:
- *
- *      request.get('/').end(function(res){});
- *      request.get('/', function(res){});
- *
- *  Sending data can be chained:
- *
- *      request
- *        .post('/user')
- *        .send({ name: 'tj' })
- *        .end(function(res){});
- *
- *  Or passed to `.send()`:
- *
- *      request
- *        .post('/user')
- *        .send({ name: 'tj' }, function(res){});
- *
- *  Or passed to `.post()`:
- *
- *      request
- *        .post('/user', { name: 'tj' })
- *        .end(function(res){});
- *
- * Or further reduced to a single call for simple cases:
- *
- *      request
- *        .post('/user', { name: 'tj' }, function(res){});
- *
- * @param {XMLHTTPRequest} xhr
- * @param {Object} options
- * @api private
- */
-
-function Response(req, options) {
-  options = options || {};
-  this.req = req;
-  this.xhr = this.req.xhr;
-  // responseText is accessible only if responseType is '' or 'text' and on older browsers
-  this.text = ((this.req.method !='HEAD' && (this.xhr.responseType === '' || this.xhr.responseType === 'text')) || typeof this.xhr.responseType === 'undefined')
-     ? this.xhr.responseText
-     : null;
-  this.statusText = this.req.xhr.statusText;
-  this._setStatusProperties(this.xhr.status);
-  this.header = this.headers = parseHeader(this.xhr.getAllResponseHeaders());
-  // getAllResponseHeaders sometimes falsely returns "" for CORS requests, but
-  // getResponseHeader still works. so we get content-type even if getting
-  // other headers fails.
-  this.header['content-type'] = this.xhr.getResponseHeader('content-type');
-  this._setHeaderProperties(this.header);
-  this.body = this.req.method != 'HEAD'
-    ? this._parseBody(this.text ? this.text : this.xhr.response)
-    : null;
-}
-
-/**
- * Get case-insensitive `field` value.
- *
- * @param {String} field
- * @return {String}
- * @api public
- */
-
-Response.prototype.get = function(field){
-  return this.header[field.toLowerCase()];
-};
-
-/**
- * Set header related properties:
- *
- *   - `.type` the content type without params
- *
- * A response of "Content-Type: text/plain; charset=utf-8"
- * will provide you with a `.type` of "text/plain".
- *
- * @param {Object} header
- * @api private
- */
-
-Response.prototype._setHeaderProperties = function(header){
-  // content-type
-  var ct = this.header['content-type'] || '';
-  this.type = type(ct);
-
-  // params
-  var obj = params(ct);
-  for (var key in obj) this[key] = obj[key];
-};
-
-/**
- * Parse the given body `str`.
- *
- * Used for auto-parsing of bodies. Parsers
- * are defined on the `superagent.parse` object.
- *
- * @param {String} str
- * @return {Mixed}
- * @api private
- */
-
-Response.prototype._parseBody = function(str){
-  var parse = request.parse[this.type];
-  if (!parse && isJSON(this.type)) {
-    parse = request.parse['application/json'];
-  }
-  return parse && str && (str.length || str instanceof Object)
-    ? parse(str)
-    : null;
-};
-
-/**
- * Set flags such as `.ok` based on `status`.
- *
- * For example a 2xx response will give you a `.ok` of __true__
- * whereas 5xx will be __false__ and `.error` will be __true__. The
- * `.clientError` and `.serverError` are also available to be more
- * specific, and `.statusType` is the class of error ranging from 1..5
- * sometimes useful for mapping respond colors etc.
- *
- * "sugar" properties are also defined for common cases. Currently providing:
- *
- *   - .noContent
- *   - .badRequest
- *   - .unauthorized
- *   - .notAcceptable
- *   - .notFound
- *
- * @param {Number} status
- * @api private
- */
-
-Response.prototype._setStatusProperties = function(status){
-  // handle IE9 bug: http://stackoverflow.com/questions/10046972/msie-returns-status-code-of-1223-for-ajax-request
-  if (status === 1223) {
-    status = 204;
-  }
-
-  var type = status / 100 | 0;
-
-  // status / class
-  this.status = this.statusCode = status;
-  this.statusType = type;
-
-  // basics
-  this.info = 1 == type;
-  this.ok = 2 == type;
-  this.clientError = 4 == type;
-  this.serverError = 5 == type;
-  this.error = (4 == type || 5 == type)
-    ? this.toError()
-    : false;
-
-  // sugar
-  this.accepted = 202 == status;
-  this.noContent = 204 == status;
-  this.badRequest = 400 == status;
-  this.unauthorized = 401 == status;
-  this.notAcceptable = 406 == status;
-  this.notFound = 404 == status;
-  this.forbidden = 403 == status;
-};
-
-/**
- * Return an `Error` representative of this response.
- *
- * @return {Error}
- * @api public
- */
-
-Response.prototype.toError = function(){
-  var req = this.req;
-  var method = req.method;
-  var url = req.url;
-
-  var msg = 'cannot ' + method + ' ' + url + ' (' + this.status + ')';
-  var err = new Error(msg);
-  err.status = this.status;
-  err.method = method;
-  err.url = url;
-
-  return err;
-};
-
-/**
- * Expose `Response`.
- */
-
-request.Response = Response;
-
-/**
- * Initialize a new `Request` with the given `method` and `url`.
- *
- * @param {String} method
- * @param {String} url
- * @api public
- */
-
-function Request(method, url) {
-  var self = this;
-  this._query = this._query || [];
-  this.method = method;
-  this.url = url;
-  this.header = {}; // preserves header name case
-  this._header = {}; // coerces header names to lowercase
-  this.on('end', function(){
-    var err = null;
-    var res = null;
-
-    try {
-      res = new Response(self);
-    } catch(e) {
-      err = new Error('Parser is unable to parse the response');
-      err.parse = true;
-      err.original = e;
-      // issue #675: return the raw response if the response parsing fails
-      err.rawResponse = self.xhr && self.xhr.responseText ? self.xhr.responseText : null;
-      // issue #876: return the http status code if the response parsing fails
-      err.statusCode = self.xhr && self.xhr.status ? self.xhr.status : null;
-      return self.callback(err);
-    }
-
-    self.emit('response', res);
-
-    var new_err;
-    try {
-      if (res.status < 200 || res.status >= 300) {
-        new_err = new Error(res.statusText || 'Unsuccessful HTTP response');
-        new_err.original = err;
-        new_err.response = res;
-        new_err.status = res.status;
-      }
-    } catch(e) {
-      new_err = e; // #985 touching res may cause INVALID_STATE_ERR on old Android
-    }
-
-    // #1000 don't catch errors from the callback to avoid double calling it
-    if (new_err) {
-      self.callback(new_err, res);
-    } else {
-      self.callback(null, res);
-    }
-  });
-}
-
-/**
- * Mixin `Emitter` and `requestBase`.
- */
-
-Emitter(Request.prototype);
-for (var key in requestBase) {
-  Request.prototype[key] = requestBase[key];
-}
-
-/**
- * Set Content-Type to `type`, mapping values from `request.types`.
- *
- * Examples:
- *
- *      superagent.types.xml = 'application/xml';
- *
- *      request.post('/')
- *        .type('xml')
- *        .send(xmlstring)
- *        .end(callback);
- *
- *      request.post('/')
- *        .type('application/xml')
- *        .send(xmlstring)
- *        .end(callback);
- *
- * @param {String} type
- * @return {Request} for chaining
- * @api public
- */
-
-Request.prototype.type = function(type){
-  this.set('Content-Type', request.types[type] || type);
-  return this;
-};
-
-/**
- * Set responseType to `val`. Presently valid responseTypes are 'blob' and
- * 'arraybuffer'.
- *
- * Examples:
- *
- *      req.get('/')
- *        .responseType('blob')
- *        .end(callback);
- *
- * @param {String} val
- * @return {Request} for chaining
- * @api public
- */
-
-Request.prototype.responseType = function(val){
-  this._responseType = val;
-  return this;
-};
-
-/**
- * Set Accept to `type`, mapping values from `request.types`.
- *
- * Examples:
- *
- *      superagent.types.json = 'application/json';
- *
- *      request.get('/agent')
- *        .accept('json')
- *        .end(callback);
- *
- *      request.get('/agent')
- *        .accept('application/json')
- *        .end(callback);
- *
- * @param {String} accept
- * @return {Request} for chaining
- * @api public
- */
-
-Request.prototype.accept = function(type){
-  this.set('Accept', request.types[type] || type);
-  return this;
-};
-
-/**
- * Set Authorization field value with `user` and `pass`.
- *
- * @param {String} user
- * @param {String} pass
- * @param {Object} options with 'type' property 'auto' or 'basic' (default 'basic')
- * @return {Request} for chaining
- * @api public
- */
-
-Request.prototype.auth = function(user, pass, options){
-  if (!options) {
-    options = {
-      type: 'basic'
-    }
-  }
-
-  switch (options.type) {
-    case 'basic':
-      var str = btoa(user + ':' + pass);
-      this.set('Authorization', 'Basic ' + str);
-    break;
-
-    case 'auto':
-      this.username = user;
-      this.password = pass;
-    break;
-  }
-  return this;
-};
-
-/**
-* Add query-string `val`.
-*
-* Examples:
-*
-*   request.get('/shoes')
-*     .query('size=10')
-*     .query({ color: 'blue' })
-*
-* @param {Object|String} val
-* @return {Request} for chaining
-* @api public
-*/
-
-Request.prototype.query = function(val){
-  if ('string' != typeof val) val = serialize(val);
-  if (val) this._query.push(val);
-  return this;
-};
-
-/**
- * Queue the given `file` as an attachment to the specified `field`,
- * with optional `filename`.
- *
- * ``` js
- * request.post('/upload')
- *   .attach('content', new Blob(['<a id="a"><b id="b">hey!</b></a>'], { type: "text/html"}))
- *   .end(callback);
- * ```
- *
- * @param {String} field
- * @param {Blob|File} file
- * @param {String} filename
- * @return {Request} for chaining
- * @api public
- */
-
-Request.prototype.attach = function(field, file, filename){
-  this._getFormData().append(field, file, filename || file.name);
-  return this;
-};
-
-Request.prototype._getFormData = function(){
-  if (!this._formData) {
-    this._formData = new root.FormData();
-  }
-  return this._formData;
-};
-
-/**
- * Invoke the callback with `err` and `res`
- * and handle arity check.
- *
- * @param {Error} err
- * @param {Response} res
- * @api private
- */
-
-Request.prototype.callback = function(err, res){
-  var fn = this._callback;
-  this.clearTimeout();
-  fn(err, res);
-};
-
-/**
- * Invoke callback with x-domain error.
- *
- * @api private
- */
-
-Request.prototype.crossDomainError = function(){
-  var err = new Error('Request has been terminated\nPossible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.');
-  err.crossDomain = true;
-
-  err.status = this.status;
-  err.method = this.method;
-  err.url = this.url;
-
-  this.callback(err);
-};
-
-/**
- * Invoke callback with timeout error.
- *
- * @api private
- */
-
-Request.prototype._timeoutError = function(){
-  var timeout = this._timeout;
-  var err = new Error('timeout of ' + timeout + 'ms exceeded');
-  err.timeout = timeout;
-  this.callback(err);
-};
-
-/**
- * Compose querystring to append to req.url
- *
- * @api private
- */
-
-Request.prototype._appendQueryString = function(){
-  var query = this._query.join('&');
-  if (query) {
-    this.url += ~this.url.indexOf('?')
-      ? '&' + query
-      : '?' + query;
-  }
-};
-
-/**
- * Initiate request, invoking callback `fn(res)`
- * with an instanceof `Response`.
- *
- * @param {Function} fn
- * @return {Request} for chaining
- * @api public
- */
-
-Request.prototype.end = function(fn){
-  var self = this;
-  var xhr = this.xhr = request.getXHR();
-  var timeout = this._timeout;
-  var data = this._formData || this._data;
-
-  // store callback
-  this._callback = fn || noop;
-
-  // state change
-  xhr.onreadystatechange = function(){
-    if (4 != xhr.readyState) return;
-
-    // In IE9, reads to any property (e.g. status) off of an aborted XHR will
-    // result in the error "Could not complete the operation due to error c00c023f"
-    var status;
-    try { status = xhr.status } catch(e) { status = 0; }
-
-    if (0 == status) {
-      if (self.timedout) return self._timeoutError();
-      if (self._aborted) return;
-      return self.crossDomainError();
-    }
-    self.emit('end');
-  };
-
-  // progress
-  var handleProgress = function(direction, e) {
-    if (e.total > 0) {
-      e.percent = e.loaded / e.total * 100;
-    }
-    e.direction = direction;
-    self.emit('progress', e);
-  }
-  if (this.hasListeners('progress')) {
-    try {
-      xhr.onprogress = handleProgress.bind(null, 'download');
-      if (xhr.upload) {
-        xhr.upload.onprogress = handleProgress.bind(null, 'upload');
-      }
-    } catch(e) {
-      // Accessing xhr.upload fails in IE from a web worker, so just pretend it doesn't exist.
-      // Reported here:
-      // https://connect.microsoft.com/IE/feedback/details/837245/xmlhttprequest-upload-throws-invalid-argument-when-used-from-web-worker-context
-    }
-  }
-
-  // timeout
-  if (timeout && !this._timer) {
-    this._timer = setTimeout(function(){
-      self.timedout = true;
-      self.abort();
-    }, timeout);
-  }
-
-  // querystring
-  this._appendQueryString();
-
-  // initiate request
-  if (this.username && this.password) {
-    xhr.open(this.method, this.url, true, this.username, this.password);
-  } else {
-    xhr.open(this.method, this.url, true);
-  }
-
-  // CORS
-  if (this._withCredentials) xhr.withCredentials = true;
-
-  // body
-  if ('GET' != this.method && 'HEAD' != this.method && 'string' != typeof data && !this._isHost(data)) {
-    // serialize stuff
-    var contentType = this._header['content-type'];
-    var serialize = this._serializer || request.serialize[contentType ? contentType.split(';')[0] : ''];
-    if (!serialize && isJSON(contentType)) serialize = request.serialize['application/json'];
-    if (serialize) data = serialize(data);
-  }
-
-  // set header fields
-  for (var field in this.header) {
-    if (null == this.header[field]) continue;
-    xhr.setRequestHeader(field, this.header[field]);
-  }
-
-  if (this._responseType) {
-    xhr.responseType = this._responseType;
-  }
-
-  // send stuff
-  this.emit('request', this);
-
-  // IE11 xhr.send(undefined) sends 'undefined' string as POST payload (instead of nothing)
-  // We need null here if data is undefined
-  xhr.send(typeof data !== 'undefined' ? data : null);
-  return this;
-};
-
-
-/**
- * Expose `Request`.
- */
-
-request.Request = Request;
-
-/**
- * GET `url` with optional callback `fn(res)`.
- *
- * @param {String} url
- * @param {Mixed|Function} [data] or fn
- * @param {Function} [fn]
- * @return {Request}
- * @api public
- */
-
-request.get = function(url, data, fn){
-  var req = request('GET', url);
-  if ('function' == typeof data) fn = data, data = null;
-  if (data) req.query(data);
-  if (fn) req.end(fn);
-  return req;
-};
-
-/**
- * HEAD `url` with optional callback `fn(res)`.
- *
- * @param {String} url
- * @param {Mixed|Function} [data] or fn
- * @param {Function} [fn]
- * @return {Request}
- * @api public
- */
-
-request.head = function(url, data, fn){
-  var req = request('HEAD', url);
-  if ('function' == typeof data) fn = data, data = null;
-  if (data) req.send(data);
-  if (fn) req.end(fn);
-  return req;
-};
-
-/**
- * OPTIONS query to `url` with optional callback `fn(res)`.
- *
- * @param {String} url
- * @param {Mixed|Function} [data] or fn
- * @param {Function} [fn]
- * @return {Request}
- * @api public
- */
-
-request.options = function(url, data, fn){
-  var req = request('OPTIONS', url);
-  if ('function' == typeof data) fn = data, data = null;
-  if (data) req.send(data);
-  if (fn) req.end(fn);
-  return req;
-};
-
-/**
- * DELETE `url` with optional callback `fn(res)`.
- *
- * @param {String} url
- * @param {Function} [fn]
- * @return {Request}
- * @api public
- */
-
-function del(url, fn){
-  var req = request('DELETE', url);
-  if (fn) req.end(fn);
-  return req;
-};
-
-request['del'] = del;
-request['delete'] = del;
-
-/**
- * PATCH `url` with optional `data` and callback `fn(res)`.
- *
- * @param {String} url
- * @param {Mixed} [data]
- * @param {Function} [fn]
- * @return {Request}
- * @api public
- */
-
-request.patch = function(url, data, fn){
-  var req = request('PATCH', url);
-  if ('function' == typeof data) fn = data, data = null;
-  if (data) req.send(data);
-  if (fn) req.end(fn);
-  return req;
-};
-
-/**
- * POST `url` with optional `data` and callback `fn(res)`.
- *
- * @param {String} url
- * @param {Mixed} [data]
- * @param {Function} [fn]
- * @return {Request}
- * @api public
- */
-
-request.post = function(url, data, fn){
-  var req = request('POST', url);
-  if ('function' == typeof data) fn = data, data = null;
-  if (data) req.send(data);
-  if (fn) req.end(fn);
-  return req;
-};
-
-/**
- * PUT `url` with optional `data` and callback `fn(res)`.
- *
- * @param {String} url
- * @param {Mixed|Function} [data] or fn
- * @param {Function} [fn]
- * @return {Request}
- * @api public
- */
-
-request.put = function(url, data, fn){
-  var req = request('PUT', url);
-  if ('function' == typeof data) fn = data, data = null;
-  if (data) req.send(data);
-  if (fn) req.end(fn);
-  return req;
-};
-
-},{"./is-object":165,"./request":167,"./request-base":166,"emitter":151}],165:[function(require,module,exports){
-/**
- * Check if `obj` is an object.
- *
- * @param {Object} obj
- * @return {Boolean}
- * @api private
- */
-
-function isObject(obj) {
-  return null !== obj && 'object' === typeof obj;
-}
-
-module.exports = isObject;
-
-},{}],166:[function(require,module,exports){
-/**
- * Module of mixed-in functions shared between node and client code
- */
-var isObject = require('./is-object');
-
-/**
- * Clear previous timeout.
- *
- * @return {Request} for chaining
- * @api public
- */
-
-exports.clearTimeout = function _clearTimeout(){
-  this._timeout = 0;
-  clearTimeout(this._timer);
-  return this;
-};
-
-/**
- * Override default response body parser
- *
- * This function will be called to convert incoming data into request.body
- *
- * @param {Function}
- * @api public
- */
-
-exports.parse = function parse(fn){
-  this._parser = fn;
-  return this;
-};
-
-/**
- * Override default request body serializer
- *
- * This function will be called to convert data set via .send or .attach into payload to send
- *
- * @param {Function}
- * @api public
- */
-
-exports.serialize = function serialize(fn){
-  this._serializer = fn;
-  return this;
-};
-
-/**
- * Set timeout to `ms`.
- *
- * @param {Number} ms
- * @return {Request} for chaining
- * @api public
- */
-
-exports.timeout = function timeout(ms){
-  this._timeout = ms;
-  return this;
-};
-
-/**
- * Promise support
- *
- * @param {Function} resolve
- * @param {Function} reject
- * @return {Request}
- */
-
-exports.then = function then(resolve, reject) {
-  if (!this._fullfilledPromise) {
-    var self = this;
-    this._fullfilledPromise = new Promise(function(innerResolve, innerReject){
-      self.end(function(err, res){
-        if (err) innerReject(err); else innerResolve(res);
-      });
-    });
-  }
-  return this._fullfilledPromise.then(resolve, reject);
-}
-
-exports.catch = function(cb) {
-  return this.then(undefined, cb);
-};
-
-/**
- * Allow for extension
- */
-
-exports.use = function use(fn) {
-  fn(this);
-  return this;
-}
-
-
-/**
- * Get request header `field`.
- * Case-insensitive.
- *
- * @param {String} field
- * @return {String}
- * @api public
- */
-
-exports.get = function(field){
-  return this._header[field.toLowerCase()];
-};
-
-/**
- * Get case-insensitive header `field` value.
- * This is a deprecated internal API. Use `.get(field)` instead.
- *
- * (getHeader is no longer used internally by the superagent code base)
- *
- * @param {String} field
- * @return {String}
- * @api private
- * @deprecated
- */
-
-exports.getHeader = exports.get;
-
-/**
- * Set header `field` to `val`, or multiple fields with one object.
- * Case-insensitive.
- *
- * Examples:
- *
- *      req.get('/')
- *        .set('Accept', 'application/json')
- *        .set('X-API-Key', 'foobar')
- *        .end(callback);
- *
- *      req.get('/')
- *        .set({ Accept: 'application/json', 'X-API-Key': 'foobar' })
- *        .end(callback);
- *
- * @param {String|Object} field
- * @param {String} val
- * @return {Request} for chaining
- * @api public
- */
-
-exports.set = function(field, val){
-  if (isObject(field)) {
-    for (var key in field) {
-      this.set(key, field[key]);
-    }
-    return this;
-  }
-  this._header[field.toLowerCase()] = val;
-  this.header[field] = val;
-  return this;
-};
-
-/**
- * Remove header `field`.
- * Case-insensitive.
- *
- * Example:
- *
- *      req.get('/')
- *        .unset('User-Agent')
- *        .end(callback);
- *
- * @param {String} field
- */
-exports.unset = function(field){
-  delete this._header[field.toLowerCase()];
-  delete this.header[field];
-  return this;
-};
-
-/**
- * Write the field `name` and `val`, or multiple fields with one object
- * for "multipart/form-data" request bodies.
- *
- * ``` js
- * request.post('/upload')
- *   .field('foo', 'bar')
- *   .end(callback);
- *
- * request.post('/upload')
- *   .field({ foo: 'bar', baz: 'qux' })
- *   .end(callback);
- * ```
- *
- * @param {String|Object} name
- * @param {String|Blob|File|Buffer|fs.ReadStream} val
- * @return {Request} for chaining
- * @api public
- */
-exports.field = function(name, val) {
-
-  // name should be either a string or an object.
-  if (null === name ||  undefined === name) {
-    throw new Error('.field(name, val) name can not be empty');
-  }
-
-  if (isObject(name)) {
-    for (var key in name) {
-      this.field(key, name[key]);
-    }
-    return this;
-  }
-
-  // val should be defined now
-  if (null === val || undefined === val) {
-    throw new Error('.field(name, val) val can not be empty');
-  }
-  this._getFormData().append(name, val);
-  return this;
-};
-
-/**
- * Abort the request, and clear potential timeout.
- *
- * @return {Request}
- * @api public
- */
-exports.abort = function(){
-  if (this._aborted) {
-    return this;
-  }
-  this._aborted = true;
-  this.xhr && this.xhr.abort(); // browser
-  this.req && this.req.abort(); // node
-  this.clearTimeout();
-  this.emit('abort');
-  return this;
-};
-
-/**
- * Enable transmission of cookies with x-domain requests.
- *
- * Note that for this to work the origin must not be
- * using "Access-Control-Allow-Origin" with a wildcard,
- * and also must set "Access-Control-Allow-Credentials"
- * to "true".
- *
- * @api public
- */
-
-exports.withCredentials = function(){
-  // This is browser-only functionality. Node side is no-op.
-  this._withCredentials = true;
-  return this;
-};
-
-/**
- * Set the max redirects to `n`. Does noting in browser XHR implementation.
- *
- * @param {Number} n
- * @return {Request} for chaining
- * @api public
- */
-
-exports.redirects = function(n){
-  this._maxRedirects = n;
-  return this;
-};
-
-/**
- * Convert to a plain javascript object (not JSON string) of scalar properties.
- * Note as this method is designed to return a useful non-this value,
- * it cannot be chained.
- *
- * @return {Object} describing method, url, and data of this request
- * @api public
- */
-
-exports.toJSON = function(){
-  return {
-    method: this.method,
-    url: this.url,
-    data: this._data,
-    headers: this._header
-  };
-};
-
-/**
- * Check if `obj` is a host object,
- * we don't want to serialize these :)
- *
- * TODO: future proof, move to compoent land
- *
- * @param {Object} obj
- * @return {Boolean}
- * @api private
- */
-
-exports._isHost = function _isHost(obj) {
-  var str = {}.toString.call(obj);
-
-  switch (str) {
-    case '[object File]':
-    case '[object Blob]':
-    case '[object FormData]':
-      return true;
-    default:
-      return false;
-  }
-}
-
-/**
- * Send `data` as the request body, defaulting the `.type()` to "json" when
- * an object is given.
- *
- * Examples:
- *
- *       // manual json
- *       request.post('/user')
- *         .type('json')
- *         .send('{"name":"tj"}')
- *         .end(callback)
- *
- *       // auto json
- *       request.post('/user')
- *         .send({ name: 'tj' })
- *         .end(callback)
- *
- *       // manual x-www-form-urlencoded
- *       request.post('/user')
- *         .type('form')
- *         .send('name=tj')
- *         .end(callback)
- *
- *       // auto x-www-form-urlencoded
- *       request.post('/user')
- *         .type('form')
- *         .send({ name: 'tj' })
- *         .end(callback)
- *
- *       // defaults to x-www-form-urlencoded
- *      request.post('/user')
- *        .send('name=tobi')
- *        .send('species=ferret')
- *        .end(callback)
- *
- * @param {String|Object} data
- * @return {Request} for chaining
- * @api public
- */
-
-exports.send = function(data){
-  var obj = isObject(data);
-  var type = this._header['content-type'];
-
-  // merge
-  if (obj && isObject(this._data)) {
-    for (var key in data) {
-      this._data[key] = data[key];
-    }
-  } else if ('string' == typeof data) {
-    // default to x-www-form-urlencoded
-    if (!type) this.type('form');
-    type = this._header['content-type'];
-    if ('application/x-www-form-urlencoded' == type) {
-      this._data = this._data
-        ? this._data + '&' + data
-        : data;
-    } else {
-      this._data = (this._data || '') + data;
-    }
-  } else {
-    this._data = data;
-  }
-
-  if (!obj || this._isHost(data)) return this;
-
-  // default to json
-  if (!type) this.type('json');
-  return this;
-};
-
-},{"./is-object":165}],167:[function(require,module,exports){
-// The node and browser modules expose versions of this with the
-// appropriate constructor function bound as first argument
-/**
- * Issue a request:
- *
- * Examples:
- *
- *    request('GET', '/users').end(callback)
- *    request('/users').end(callback)
- *    request('/users', callback)
- *
- * @param {String} method
- * @param {String|Function} url or callback
- * @return {Request}
- * @api public
- */
-
-function request(RequestConstructor, method, url) {
-  // callback
-  if ('function' == typeof url) {
-    return new RequestConstructor('GET', method).end(url);
-  }
-
-  // url first
-  if (2 == arguments.length) {
-    return new RequestConstructor('GET', method);
-  }
-
-  return new RequestConstructor(method, url);
-}
-
-module.exports = request;
-
-},{}],168:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 const firebase = require("firebase")
 const $ = require("jquery")
 const observer = require("./observer")
@@ -37208,14 +35372,7 @@ var config = {
   })
 
     module.exports = userFactory
-},{"./observer":170,"firebase":155,"jquery":158}],169:[function(require,module,exports){
-
-const auth = require("./authorization")
-const moviedb = require("./tmdb")
-
-auth.init()
-auth.logout()
-},{"./authorization":168,"./tmdb":171}],170:[function(require,module,exports){
+},{"./observer":161,"firebase":154,"jquery":157}],161:[function(require,module,exports){
 const firebase = require("firebase")
 const auth =require("./authorization")
 
@@ -37237,13 +35394,28 @@ const observer = Object.create(null, {
 })
 
 module.exports = observer
-},{"./authorization":168,"firebase":155}],171:[function(require,module,exports){
-const moviedb = require("moviedb")("3693ec3ce2f4a35cd73d00f01c34dcce")
+},{"./authorization":160,"firebase":154}],162:[function(require,module,exports){
+const auth = require("./auth/authorization")
+const searchBar = require("./tmdb")
 
-module.exports = moviedb
-// $(document).on("load",)
+auth.init()
+auth.logout()
+searchBar()
+},{"./auth/authorization":160,"./tmdb":163}],163:[function(require,module,exports){
+const $ = require("jquery")
+// const firebase = require("firebase")
 
-// movieDB = {
-//     apiKey: "3693ec3ce2f4a35cd73d00f01c34dcce"
-// };
-},{"moviedb":159}]},{},[169]);
+const searchBar = function(event){
+    $("#searchMovieInformation").on("click", event => {
+        console.log("search Button is working")
+        $.ajax({
+            "url": `https://api.themoviedb.org/3/search/movie?api_key=3693ec3ce2f4a35cd73d00f01c34dcce&query=${$("#movieTitle").val()}`,
+            "method": "GET"
+        }).then((results) => {
+        console.log(results)
+        })
+    })
+}
+module.exports = searchBar
+
+},{"jquery":157}]},{},[162]);

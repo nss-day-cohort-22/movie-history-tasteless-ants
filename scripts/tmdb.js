@@ -1,12 +1,13 @@
 const $ = require("jquery")
 // const firebase = require("firebase")
 
-const searchBar = function(event){
+const searchBar = function (event) {
 
     // On "enter keypress" artificially click the searchMovieInfo id
-    $("#movieTitle").on("keypress", function(event) {
+    $("#movieTitle").on("keypress", function (event) {
         if (event.keyCode === 13) {
-        $("#searchMovieInformation").click()}
+            $("#searchMovieInformation").click()
+        }
     })
     // On click of searchMovieInfo id, start ajax call
     $("#searchMovieInformation").on("click", event => {
@@ -18,21 +19,25 @@ const searchBar = function(event){
         }).then((searchedMovieData) => {
             console.log(searchedMovieData)
 
+            const searchedMovieArray = searchedMovieData
+            console.log(searchedMovieArray)
             // Where we will append the searched movie information on the DOM
-            let titleEl = $("#movieName")
+            let movieInfoEl = $("#movieInfo")
             // Clear the search results contents
-            titleEl.empty()
+            movieInfoEl.empty()
             // Clear the search criteria in input field
-            $("#movieTitle").val("")
+            $("#movieInfo").val("")
+
 
             // Pull the title, and release date of all search results and append them to DOM
-            searchedMovieData.results.forEach(function(movieObj) {
+            searchedMovieData.results.forEach(function (movieObj) {
                 console.log(movieObj.title)
-                console.log(movieObj.release_date)
-                titleEl.append(`<img src="https://image.tmdb.org/t/p/w500/${movieObj.poster_path}">`)
-                titleEl.append(`<p>${movieObj.title}</p>`)
-                titleEl.append(`<p>${movieObj.release_date}</p>`)
-        }, this);
+                console.log("NEWNEWNEW")
+                console.log(movieObj.credits)
+                movieInfoEl.append(`<img src="https://image.tmdb.org/t/p/w500/${movieObj.poster_path}">`)
+                movieInfoEl.append(`<p>${movieObj.title}</p>`)
+                movieInfoEl.append(`<button id="movie_${movieObj.id}">Add To Watchlist</button>`)
+            }, this);
         })
     })
 }

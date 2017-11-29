@@ -35397,22 +35397,154 @@ const observer = Object.create(null, {
 
 module.exports = observer
 },{"./authorization":160,"firebase":154}],162:[function(require,module,exports){
+
+const $ = require("jquery")
+const firebase = require("firebase")
+const userFactory = require("./auth/authorization")
+const movieHandler = require("./movieHandler")
+
+let firebaseURL = "https://tasteless-ants-8fafd.firebaseio.com/"
+let apiKey = "3693ec3ce2f4a35cd73d00f01c34dcce"
+
+// Manages data for Firebase and tmdb
+const dataHandler = Object.create(null, {
+    "userTokenGET": {
+        "value": function () {
+            return firebase.auth().activeUser.getIdToken(true)
+                .then(idToken => {
+                    return $.ajax({
+                        "url": `${firebaseURL}${auth.activeUser.uid}/.json?auth=${idToken}`,
+                        "method": "GET"
+                    })
+                })
+        }, "writable": true, "enumerable": true
+    },
+
+    "userTokenPOST": {
+        "value": function (newObject) {
+            return firebase.auth().activeUser.getIdToken(true)
+                .then(idToken => {
+                    return $.ajax({
+                        "url": `${firebaseURL}${auth.activeUser.uid}/.json?auth=${idToken}`,
+                        "method": "POST",
+                        "data": JSON.stringify(newObject)
+                    })
+                })
+        }, "writable": true, "enumerable": true
+    },
+
+    "userTokenDELETE": {
+        "value": function (objectID) {
+            return firebase.auth().activeUser.getIdToken(true)
+                .then(idToken => {
+                    return $.ajax({
+                        "url": `${firebaseURL}${auth.activeUser.uid}/${objectID}.json?auth=${idToken}`,
+                        "method": "DELETE"
+                    })
+                })
+        }, "writable": true, "enumerable": true
+    },
+
+    "userTokenPUT": {
+        "value": function(fbID, object) {
+            return firebase.auth().activeUser.getIdToken(true)
+                .then(idToken => {
+                    return $.ajax({
+                        "url": `${firebaseURL}${auth.activeUser.uid}/${fbID}/.json?auth=${idToken}`,
+                        "method": "PUT",
+                        "data": JSON.stringify(object)
+                    })
+                })
+        }, "writable": true, "enumerable": true
+    // },
+    // "getMovieByID": {
+    //     "value": function(movieID) {
+    //         return $.ajax({
+    //             "url": `https://api.themoviedb.org/3/movie/${movieID}?api_key=${apiKey}&append_to_response=id`,
+    //             "method": "GET"
+    //         })
+    //     }, "writable": true, "enumerable": true
+    // },
+    // "getMovieByTitle": {
+    //     "value": function(movieID) {
+    //         return $.ajax({
+    //             "url": `https://api.themoviedb.org/3/movie/${movieID}?api_key=${apiKey}&append_to_response=title`,
+    //             "method": "GET"
+    //         })
+    //     }, "writable": true, "enumerable": true
+    // },
+
+    // "searchMovies": {
+    //     "value": function(searchString) {
+    //         return $.ajax({
+    //             "url": `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchString}&page=1`,
+    //             "method": "GET"
+    //         })
+    //     }, "writable": true, "enumerable": true
+    // },
+
+    // "getCast": {
+    //     "value": function(movieID) {
+    //         return $.ajax({
+    //             "url": `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=${apiKey}
+    //             `,
+    //             "method": "GET"
+    //         })
+    //     }, "writable": true, "enumerable": true
+    // },
+
+    // "getPopular": {
+    //     "value": function() {
+    //         return $.ajax({
+    //             "url": "https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1",
+    //             "method": "GET"
+    //         })
+    //     }, "writable": true, "enumerable": true
+    }
+})
+
+module.exports = dataHandler
+},{"./auth/authorization":160,"./movieHandler":164,"firebase":154,"jquery":157}],163:[function(require,module,exports){
 const auth = require("./auth/authorization")
 const searchBar = require("./tmdb")
+const dataHandler = require("./dataHandler")
+
 
 auth.init()
 auth.logout()
 searchBar()
-},{"./auth/authorization":160,"./tmdb":163}],163:[function(require,module,exports){
+},{"./auth/authorization":160,"./dataHandler":162,"./tmdb":165}],164:[function(require,module,exports){
+// const $ = require("jquery")
+// const firebase = require("firebase")
+// const searchBar = require("./tmdb")
+// const dataHandler = require("./dataHandler")
+
+// // on click of "add to watchlist"
+// // take the movie id
+
+// const watchlist = function (event) {
+
+//         // On click of searchMovieInfo id, start ajax call
+//         $("#trackedMovies").on("click", event => {
+//             // Get information from movie json based on search criteria in search field
+//             $.ajax({
+//                 "url": `https://api.themoviedb.org/3/search/movie?api_key=3693ec3ce2f4a35cd73d00f01c34dcce&query=`,
+//                 "method": "GET"
+//             }).then((searchedMovieData) => {
+//                 console.log(searchedMovieData)
+
+
+},{}],165:[function(require,module,exports){
 const $ = require("jquery")
 // const firebase = require("firebase")
 
-const searchBar = function(event){
+const searchBar = function (event) {
 
     // On "enter keypress" artificially click the searchMovieInfo id
-    $("#movieTitle").on("keypress", function(event) {
+    $("#movieTitle").on("keypress", function (event) {
         if (event.keyCode === 13) {
-        $("#searchMovieInformation").click()}
+            $("#searchMovieInformation").click()
+        }
     })
     // On click of searchMovieInfo id, start ajax call
     $("#searchMovieInformation").on("click", event => {
@@ -35424,24 +35556,28 @@ const searchBar = function(event){
         }).then((searchedMovieData) => {
             console.log(searchedMovieData)
 
+            const searchedMovieArray = searchedMovieData
+            console.log(searchedMovieArray)
             // Where we will append the searched movie information on the DOM
-            let titleEl = $("#movieName")
+            let movieInfoEl = $("#movieInfo")
             // Clear the search results contents
-            titleEl.empty()
+            movieInfoEl.empty()
             // Clear the search criteria in input field
-            $("#movieTitle").val("")
+            $("#movieInfo").val("")
+
 
             // Pull the title, and release date of all search results and append them to DOM
-            searchedMovieData.results.forEach(function(movieObj) {
+            searchedMovieData.results.forEach(function (movieObj) {
                 console.log(movieObj.title)
-                console.log(movieObj.release_date)
-                titleEl.append(`<img src="https://image.tmdb.org/t/p/w500/${movieObj.poster_path}">`)
-                titleEl.append(`<p>${movieObj.title}</p>`)
-                titleEl.append(`<p>${movieObj.release_date}</p>`)
-        }, this);
+                console.log("NEWNEWNEW")
+                console.log(movieObj.credits)
+                movieInfoEl.append(`<img src="https://image.tmdb.org/t/p/w500/${movieObj.poster_path}">`)
+                movieInfoEl.append(`<p>${movieObj.title}</p>`)
+                movieInfoEl.append(`<button id="movie_${movieObj.id}">Add To Watchlist</button>`)
+            }, this);
         })
     })
 }
 module.exports = searchBar
 
-},{"jquery":157}]},{},[162]);
+},{"jquery":157}]},{},[163]);

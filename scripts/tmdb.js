@@ -29,6 +29,7 @@ const searchBar = function(event){
             searchedMovieData.results.forEach(function(movieObj) {
                 console.log(movieObj.title)
                 console.log(movieObj.release_date)
+                titleEl.append(`<img src="https://image.tmdb.org/t/p/w500/${movieObj.poster_path}">`)
                 titleEl.append(`<p>${movieObj.title}</p>`)
                 titleEl.append(`<p>${movieObj.release_date}</p>`)
         }, this);

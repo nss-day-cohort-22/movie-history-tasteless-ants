@@ -30,11 +30,28 @@ const searchBar = function (event) {
             // Pull the title, and release date of all search results and append them to DOM
             searchedMovieData.results.forEach(function (movieObj) {
                 console.log(movieObj.title)
-                console.log("NEWNEWNEW")
-                movieInfoEl.append(`<img src="https://image.tmdb.org/t/p/w500/${movieObj.poster_path}">`)
-                movieInfoEl.append(`<p>${movieObj.title}</p>`)
-                movieInfoEl.append(`<button id="movie_${movieObj.id}">Add To Watchlist</button>`)
+
+                let movieInfoDiv = document.createElement("div")
+                movieInfoDiv.id = `movie_${movieObj.id}`
+                movieInfoEl.append(movieInfoDiv)
+
+                let movieImg = document.createElement("img")
+                let movieTitle = document.createElement("p")
+                let movieWatchButton = document.createElement("button")
+
+                movieImg.src = `https://image.tmdb.org/t/p/w500/${movieObj.poster_path}`
+                movieTitle.appendChild(document.createTextNode(`${movieObj.title}`))
+                movieWatchButton.classList.add("watchButton")
+                movieWatchButton.appendChild(document.createTextNode("Add To Watchlist"))
+
+                movieInfoDiv.append(movieImg)
+                movieInfoDiv.append(movieTitle)
+                movieInfoDiv.append(movieWatchButton)
+
             }, this);
+            $(".watchButton").on("click", event => {
+                console.log(event.target.parentNode.id)
+            })
         })
     })
 }

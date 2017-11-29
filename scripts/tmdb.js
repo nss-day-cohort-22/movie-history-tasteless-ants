@@ -1,6 +1,8 @@
 const $ = require("jquery")
-// const firebase = require("firebase")
+const firebase = require("firebase")
+const addToWatchList = require("./movieController")
 
+let searchedMovieArray = "Im an array"
 const searchBar = function (event) {
 
     // On "enter keypress" artificially click the searchMovieInfo id
@@ -19,7 +21,7 @@ const searchBar = function (event) {
         }).then((searchedMovieData) => {
             console.log(searchedMovieData)
 
-            const searchedMovieArray = searchedMovieData
+            searchedMovieArray = searchedMovieData.results
             // Where we will append the searched movie information on the DOM
             let movieInfoEl = $("#movieInfo")
             // Clear the search results contents
@@ -28,7 +30,7 @@ const searchBar = function (event) {
             $("#movieInfo").val("")
 
             // Pull the title, and release date of all search results and append them to DOM
-            searchedMovieData.results.forEach(function (movieObj) {
+            searchedMovieArray.forEach(function (movieObj) {
                 console.log(movieObj.title)
 
                 let movieInfoDiv = document.createElement("div")
@@ -49,10 +51,11 @@ const searchBar = function (event) {
                 movieInfoDiv.append(movieWatchButton)
 
             }, this);
-            // $(".watchButton").on("click", event => {
-            //     console.log(event.target.parentNode.id)
-            // })
+            addToWatchList()
         })
     })
+} //write get movie array getter
+const getSearchedMovie = function(){
+    return searchedMovieArray
 }
-module.exports = searchBar
+module.exports = {searchBar, getSearchedMovie}

@@ -1,3 +1,5 @@
+
+
 const firebase = require("firebase")
 const $ = require("jquery")
 const observer = require("./observer")
@@ -12,9 +14,9 @@ var config = {
   };
 
   const userFactory = Object.create(null, {
-      "activeUser": {
-          value: null,
-          writable: true
+        "activeUser": {
+            value: null,
+            writable: true
         },
         "init": {
             value: function (e) {

@@ -49,9 +49,9 @@ const searchBar = function (event) {
                 movieInfoDiv.append(movieWatchButton)
 
             }, this);
-            $(".watchButton").on("click", event => {
-                console.log(event.target.parentNode.id)
-            })
+            // $(".watchButton").on("click", event => {
+            //     console.log(event.target.parentNode.id)
+            // })
         })
     })
 }

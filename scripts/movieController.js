@@ -1,6 +1,7 @@
 const $ = require("jquery")
 const firebase = require("firebase")
 const movieFactory = require("./movieFactory")
+const dataHandler = require("./dataHandler")
 
 
 const addToWatchList = function(event){
@@ -13,14 +14,15 @@ const addToWatchList = function(event){
         console.log(movieIDArray[1])
         let movieID = movieIDArray[1]
 
-
-        // run it through the movieFactory
         let movieToSave = search.getSearchedMovie().find(movie => {
             return movie.id === parseInt(movieID)
         })
         console.log(movieToSave)
+        // run it through the movieFactory
+        const newMoviePost = movieFactory(movieToSave)
 
         // put those sweet objects in Firebase with CRUD... somehow
+        dataHandler.userTokenPOST(newMoviePost)
     })
 }
 module.exports = addToWatchList

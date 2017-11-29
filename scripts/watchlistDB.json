@@ -1,0 +1,21 @@
+{ "movies": [{
+        "movieId": 1,
+        "title": "Chicago",
+        "year": "1990",
+        "actors": ,
+        "poster": ,
+        "rating": ,
+        "watched": false,
+        "UID":
+    },
+    {
+        "movieId": 2,
+        "title": ,
+        "year": ,
+        "actors": ,
+        "poster": ,
+        "rating": ,
+        "watched": false,
+        "UID":
+    }]
+}

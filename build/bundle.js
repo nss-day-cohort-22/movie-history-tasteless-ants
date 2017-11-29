@@ -35557,7 +35557,6 @@ const searchBar = function (event) {
             console.log(searchedMovieData)
 
             const searchedMovieArray = searchedMovieData
-            console.log(searchedMovieArray)
             // Where we will append the searched movie information on the DOM
             let movieInfoEl = $("#movieInfo")
             // Clear the search results contents
@@ -35565,12 +35564,10 @@ const searchBar = function (event) {
             // Clear the search criteria in input field
             $("#movieInfo").val("")
 
-
             // Pull the title, and release date of all search results and append them to DOM
             searchedMovieData.results.forEach(function (movieObj) {
                 console.log(movieObj.title)
                 console.log("NEWNEWNEW")
-                console.log(movieObj.credits)
                 movieInfoEl.append(`<img src="https://image.tmdb.org/t/p/w500/${movieObj.poster_path}">`)
                 movieInfoEl.append(`<p>${movieObj.title}</p>`)
                 movieInfoEl.append(`<button id="movie_${movieObj.id}">Add To Watchlist</button>`)

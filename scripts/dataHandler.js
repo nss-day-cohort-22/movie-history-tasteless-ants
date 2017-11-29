@@ -1,8 +1,7 @@
 
 const $ = require("jquery")
 const firebase = require("firebase")
-const userFactory = require("./auth/authorization")
-const movieHandler = require("./movieHandler")
+const auth = require("./auth/authorization")
 
 let firebaseURL = "https://tasteless-ants-8fafd.firebaseio.com/"
 let apiKey = "3693ec3ce2f4a35cd73d00f01c34dcce"
@@ -11,10 +10,10 @@ let apiKey = "3693ec3ce2f4a35cd73d00f01c34dcce"
 const dataHandler = Object.create(null, {
     "userTokenGET": {
         "value": function () {
-            return firebase.auth().activeUser.getIdToken(true)
+            return firebase.auth().currentUser.getIdToken(true)
                 .then(idToken => {
                     return $.ajax({
-                        "url": `${firebaseURL}${auth.activeUser.uid}/.json?auth=${idToken}`,
+                        "url": `${firebaseURL}/.json?auth=${idToken}`,
                         "method": "GET"
                     })
                 })
@@ -23,12 +22,18 @@ const dataHandler = Object.create(null, {
 
     "userTokenPOST": {
         "value": function (newObject) {
-            return firebase.auth().activeUser.getIdToken(true)
+            return firebase.auth().currentUser.getIdToken(true)
                 .then(idToken => {
+                    debugger;
                     return $.ajax({
-                        "url": `${firebaseURL}${auth.activeUser.uid}/.json?auth=${idToken}`,
+                        "url": `${firebaseURL}watchlist/.json?auth=${idToken}`,
                         "method": "POST",
-                        "data": JSON.stringify(newObject)
+                        "data": JSON.stringify({
+                            "id": newObject.id,
+                            "year": newObject.year,
+                            "title": newObject.title,
+                            "poster": newObject.poster
+                        })
                     })
                 })
         }, "writable": true, "enumerable": true
@@ -36,10 +41,10 @@ const dataHandler = Object.create(null, {
 
     "userTokenDELETE": {
         "value": function (objectID) {
-            return firebase.auth().activeUser.getIdToken(true)
+            return firebase.auth().currentUser.getIdToken(true)
                 .then(idToken => {
                     return $.ajax({
-                        "url": `${firebaseURL}${auth.activeUser.uid}/${objectID}.json?auth=${idToken}`,
+                        "url": `${firebaseURL}${auth.currentUser.uid}/${objectID}.json?auth=${idToken}`,
                         "method": "DELETE"
                     })
                 })
@@ -48,12 +53,17 @@ const dataHandler = Object.create(null, {
 
     "userTokenPUT": {
         "value": function(fbID, object) {
-            return firebase.auth().activeUser.getIdToken(true)
+            return firebase.auth().currentUser.getIdToken(true)
                 .then(idToken => {
                     return $.ajax({
-                        "url": `${firebaseURL}${auth.activeUser.uid}/${fbID}/.json?auth=${idToken}`,
+                        "url": `${firebaseURL}${auth.currentUser.uid}/${fbID}/.json?auth=${idToken}`,
                         "method": "PUT",
-                        "data": JSON.stringify(object)
+                        "data": JSON.stringify({
+                            "id": newObject.id,
+                            "year": newObject.year,
+                            "title": newObject.title,
+                            "poster": newObject.poster
+                        })
                     })
                 })
         }, "writable": true, "enumerable": true

@@ -17,8 +17,9 @@ const searchBar = function(event){
             "method": "GET"
         }).then((searchedMovieData) => {
             console.log(searchedMovieData)
-            let titleEl = $("#movieName")
 
+            // Where we will append the searched movie information on the DOM
+            let titleEl = $("#movieName")
             // Clear the search results contents
             titleEl.empty()
             // Clear the search criteria in input field
@@ -28,7 +29,6 @@ const searchBar = function(event){
             searchedMovieData.results.forEach(function(movieObj) {
                 console.log(movieObj.title)
                 console.log(movieObj.release_date)
-                titleEl.append(`<img>${movieObj.poster_path}</img>`)
                 titleEl.append(`<p>${movieObj.title}</p>`)
                 titleEl.append(`<p>${movieObj.release_date}</p>`)
         }, this);

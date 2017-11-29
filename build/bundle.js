@@ -35296,6 +35296,8 @@ process.umask = function() { return 0; };
 })(this);
 
 },{}],160:[function(require,module,exports){
+
+
 const firebase = require("firebase")
 const $ = require("jquery")
 const observer = require("./observer")
@@ -35310,9 +35312,9 @@ var config = {
   };
 
   const userFactory = Object.create(null, {
-      "activeUser": {
-          value: null,
-          writable: true
+        "activeUser": {
+            value: null,
+            writable: true
         },
         "init": {
             value: function (e) {
@@ -35421,8 +35423,9 @@ const searchBar = function(event){
             "method": "GET"
         }).then((searchedMovieData) => {
             console.log(searchedMovieData)
-            let titleEl = $("#movieName")
 
+            // Where we will append the searched movie information on the DOM
+            let titleEl = $("#movieName")
             // Clear the search results contents
             titleEl.empty()
             // Clear the search criteria in input field
@@ -35432,7 +35435,6 @@ const searchBar = function(event){
             searchedMovieData.results.forEach(function(movieObj) {
                 console.log(movieObj.title)
                 console.log(movieObj.release_date)
-                titleEl.append(`<img>${movieObj.poster_path}</img>`)
                 titleEl.append(`<p>${movieObj.title}</p>`)
                 titleEl.append(`<p>${movieObj.release_date}</p>`)
         }, this);

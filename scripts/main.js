@@ -1,8 +1,8 @@
 const auth = require("./auth/authorization")
-const searchBar = require("./tmdb")
+const search = require("./tmdb")
 const dataHandler = require("./dataHandler")
 
 
 auth.init()
 auth.logout()
-searchBar()
+search.searchBar()

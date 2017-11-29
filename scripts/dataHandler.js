@@ -24,7 +24,6 @@ const dataHandler = Object.create(null, {
         "value": function (newObject) {
             return firebase.auth().currentUser.getIdToken(true)
                 .then(idToken => {
-                    debugger;
                     return $.ajax({
                         "url": `${firebaseURL}watchlist/.json?auth=${idToken}`,
                         "method": "POST",

@@ -42,7 +42,7 @@ const dataHandler = Object.create(null, {
             return firebase.auth().currentUser.getIdToken(true)
                 .then(idToken => {
                     return $.ajax({
-                        "url": `${firebaseURL}${auth.currentUser.uid}/${objectID}.json?auth=${idToken}`,
+                        "url": `${firebaseURL}${objectID}.json?auth=${idToken}`,
                         "method": "DELETE"
                     })
                 })
@@ -54,7 +54,7 @@ const dataHandler = Object.create(null, {
             return firebase.auth().currentUser.getIdToken(true)
                 .then(idToken => {
                     return $.ajax({
-                        "url": `${firebaseURL}${auth.currentUser.uid}/${fbID}/.json?auth=${idToken}`,
+                        "url": `${firebaseURL}${fbID}/.json?auth=${idToken}`,
                         "method": "PUT",
                         "data": JSON.stringify()
                     })

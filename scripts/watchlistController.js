@@ -30,7 +30,7 @@ let watchListDOM = function(event){
                         let movieYear = document.createElement("p")
                         let movieDeleteButton = document.createElement("button")
 
-                        movieImg.src = `https://image.tmdb.org/t/p/w500/${movieObj.poster_path}`
+                        movieImg.src = `https://image.tmdb.org/t/p/w500/${movieObj.poster}`
                         movieTitle.appendChild(document.createTextNode(`${movieObj.title}`))
                         movieYear.appendChild(document.createTextNode(`${movieObj.year}`))
                         movieDeleteButton.classList.add(`deleteMovie_${movieObj.id}`)

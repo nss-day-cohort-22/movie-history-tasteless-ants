@@ -17,14 +17,6 @@ const addToWatchList = function(event){
         // run it through the movieFactory
         const newMoviePost = movieFactory(movieToSave)
 
-        dataHandler.userTokenGET()
-        .then(res => {
-            console.log("======= hit")
-            console.log(res)
-        }).catch(err => {
-            console.log("err" + err)
-        })
-        console.log();
         // put those sweet objects in Firebase with CRUD... somehow
         dataHandler.userTokenPOST(newMoviePost)
     })

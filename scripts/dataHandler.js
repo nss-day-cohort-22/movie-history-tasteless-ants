@@ -3,7 +3,7 @@ const $ = require("jquery")
 const firebase = require("firebase")
 const auth = require("./auth/authorization")
 
-let firebaseURL = "https://tasteless-ants-8fafd.firebaseio.com/watchlist/"
+let firebaseURL = "https://tasteless-ants-8fafd.firebaseio.com/watchlist"
 let apiKey = "3693ec3ce2f4a35cd73d00f01c34dcce"
 
 // Manages data for Firebase and tmdb
@@ -13,9 +13,9 @@ const dataHandler = Object.create(null, {
 
             return firebase.auth().currentUser.getIdToken(true)
                 .then(idToken => {
-                    console.log(`${firebaseURL}.json?auth='${idToken}'&orderBy='uid'&equalTo='${firebase.auth().currentUser.uid}'`)
+                    console.log(`${firebaseURL}.json?auth=${idToken}&orderBy="uid"&equalTo="${firebase.auth().currentUser.uid}"`)
                     return $.ajax({
-                        "url": `${firebaseURL}.json?auth='${idToken}'&orderBy='uid'&equalTo='${firebase.auth().currentUser.uid}'`,
+                        "url": `${firebaseURL}.json?auth=${idToken}&orderBy="uid"&equalTo="${firebase.auth().currentUser.uid}"`,
                         "method": "GET"
                     }).fail(err => {
                         console.log(err)

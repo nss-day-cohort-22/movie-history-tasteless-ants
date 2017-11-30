@@ -23,7 +23,7 @@ var config = {
             value: function (e) {
                 firebase
                     .initializeApp(config)
-                console.log(firebase.auth().currentUser)
+
                 $("#loginDash").on("click", e => {
                     console.log("Login Click button is working")
                 $("#submitRegistration").on("click", e => {

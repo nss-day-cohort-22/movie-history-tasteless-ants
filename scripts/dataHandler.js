@@ -38,23 +38,25 @@ const dataHandler = Object.create(null, {
     },
 
     "userTokenDELETE": {
-        "value": function (objectID) {
+        "value": function (e) {
             return firebase.auth().currentUser.getIdToken(true)
                 .then(idToken => {
+                    console.log(firebaseURL + e.target.parentNode.class)
                     return $.ajax({
-                        "url": `${firebaseURL}${objectID}.json?auth=${idToken}`,
+                        "url": `${firebaseURL}/${e.target.parentNode.class}.json?auth=${idToken}`,
                         "method": "DELETE"
-                    })
+                    }).then((res)=> {
+                        console.log(res)
+                        $(e.target.parentNode.class).remove()})
                 })
-        }, "writable": true, "enumerable": true
+        },
     },
-
     "userTokenPUT": {
         "value": function(fbID, object) {
             return firebase.auth().currentUser.getIdToken(true)
                 .then(idToken => {
                     return $.ajax({
-                        "url": `${firebaseURL}${fbID}/.json?auth=${idToken}`,
+                        "url": `${firebaseURL}/${fbID}/.json?auth=${idToken}`,
                         "method": "PUT",
                         "data": JSON.stringify()
                     })

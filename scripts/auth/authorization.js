@@ -13,10 +13,11 @@ var config = {
     messagingSenderId: "86455620319"
   };
 
+
   const userFactory = Object.create(null, {
-        "activeUser": {
-            value: null,
-            writable: true
+      "activeUser": {
+          value: null,
+          writable: true
         },
         "init": {
             value: function (e) {
@@ -25,7 +26,6 @@ var config = {
 
                 $("#loginDash").on("click", e => {
                     console.log("Login Click button is working")
-                // Set up authentication observer
                 $("#submitRegistration").on("click", e => {
                     console.log("Register Click button is working")
                     firebase.auth().createUserWithEmailAndPassword($("#email").val(), $("#password").val()).then(function(user) {

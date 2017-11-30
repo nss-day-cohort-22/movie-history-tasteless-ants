@@ -1,19 +1,18 @@
 const $ = require("jquery")
 const firebase = require("firebase")
 const movieToSave = require("./movieController")
+let auth = require("./auth/authorization")
+
 
 // when onclick add to watchlist, create object with results data
 const movieFactory = (movie) => {
-    return Object.create({}, {
-    "id":{value: movie.id},
-    "title": {value: movie.title},
-    "year": {value: movie.release_date},
-    "poster": {value: movie.poster_path},
-    // "actors": {[`${movieObj.credits}`]},
-    // "rating": {value: rating},
-    // "watched": {value: false},
-    // "uid": {value: firebase.authUser.uid}
-    })
+    return {
+        "id": movie.id,
+        "title": movie.title,
+        "year": movie.release_date,
+        "poster": movie.poster_path,
+        "uid": firebase.auth().currentUser.uid,
+        "watched": false
+    }
 }
-console.log(movieFactory)
 module.exports = movieFactory

@@ -1,11 +1,16 @@
 <html lang='en'>
-        <head>
+    <center>
+    <head>
+            <link href="styles.css" rel="stylesheet">
             <meta charset='utf-8'>
             <title>Tasteless Movie</title>
             <!-- <link rel='stylesheet' href='./styles.css'> -->
         </head>
-
-        <button id="logout">Logout!</button>
+    <body id="background">
+        <button id="logout">
+                <span class="logout">Logout!</span>
+                <span class="jk"></span>
+            </button>
 
         <header>
             <h1>Movie History</h1>
@@ -20,24 +25,40 @@
         </form>
 
         <div id="whichButton">
-            <button id="submitRegistration">Register</button>
-            <button id="loginDash">Login</button>
+            <button id="submitRegistration">
+                    <span class="submit">Register</span>
+                    <span class="jkj"></span>
+            </button>
+            <button id="loginDash">
+                    <span class="login">Login</span>
+                    <span class="jkjk"></span>
+            </button>
         </div>
-            <body>
-            <nav>
-                <ul>
+            <!-- <nav> -->
+                <div class="btn-group">
+                    <button id="new-movies">Find New Movies</button>
+                    <button id="your-movies">Search Your Movies</button>
+                    <button id="watched-movies">Show Watched</button>
+                    <button id="watched-movies">Show Unwatched</button>
+                  </div>
+                <!-- <ul>
                     <li id="new-movies"><a href="#">Find New Movies</a></li>
                     <li id="your-movies"><a href="#">Search Your Movies</a></li>
                     <li id="watched-movies"><a href="#">Show Watched</a></li>
                     <li id="watched-movies"><a href="#">Show Unwatched</a></li>
                 </ul>
-            </nav>
+            </nav> -->
 
             <!-- Container that holds the information we want to get from our Movie API -->
             <div class="container">
                 <h1>Movies</h1>
                     <input type="text" placeholder="Enter a movie title" id="movieTitle" />
-                    <button id="searchMovieInformation">Movie Information</button>
+                    <h2>
+                    <button id="searchMovieInformation">
+                            <span class="searchMovies">Search Movies!</span>
+                            <span class="jkjkj"></span>
+                    </button>
+                    </h2>
                     <!-- List of items we want -->
                 <!-- All searched movie info  -->
                 <div id="movieInfo"></div>
@@ -50,4 +71,5 @@
             <footer></footer>
             <script src='build/bundle.js'></script>
             </body>
+            </center>
     </html>

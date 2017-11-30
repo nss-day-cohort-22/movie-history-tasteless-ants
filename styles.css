@@ -1,0 +1,327 @@
+#background {
+    height: 200px;
+    background: -webkit-linear-gradient(left, rgba(255,0,0,0), rgba(255,0,0,1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, rgba(255,0,0,0), rgba(255,0,0,1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, rgba(255,0,0,0), rgba(255,0,0,1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); /* Standard syntax (must be last) */
+}
+
+
+
+
+#searchMovieInformation {
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    -webkit-box-shadow: 0px 1px 3px #666666;
+    -moz-box-shadow: 0px 1px 3px #666666;
+    box-shadow: 0px 1px 3px #666666;
+    font-family: Georgia;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+  }
+  
+  #searchMovieInformation:hover {
+    background: goldenrod;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #f1f001);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #fff010);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #fff001);
+    background-image: -o-linear-gradient(top, #3cb0fd, #fff001);
+    background-image: linear-gradient(to bottom, #3cb0fd, #ffff01);
+    text-decoration: none;
+    font-family: Helvetica;
+    font-size: 20px;
+  }
+
+  #loginDash {
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    -webkit-box-shadow: 0px 1px 3px #666666;
+    -moz-box-shadow: 0px 1px 3px #666666;
+    box-shadow: 0px 1px 3px #666666;
+    font-family: Georgia;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+  }
+  
+  #loginDash:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #f7ff0a);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #f7ff0a);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #f7ff0a);
+    background-image: -o-linear-gradient(top, #3cb0fd, #f7ff0a);
+    background-image: linear-gradient(to bottom, #3cb0fd, #f7ff0a);
+    text-decoration: none;
+    font-family: Helvetica;
+    font-size: 20px;
+  }
+
+  #submitRegistration {
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    -webkit-box-shadow: 0px 1px 3px #666666;
+    -moz-box-shadow: 0px 1px 3px #666666;
+    box-shadow: 0px 1px 3px #666666;
+    font-family: Georgia;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+  }
+
+
+#submitRegistration:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #ff890a);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #ff890a);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #ff890a);
+    background-image: -o-linear-gradient(top, #3cb0fd, #ff890a);
+    background-image: linear-gradient(to bottom, #3cb0fd, #ff890a);
+    text-decoration: none;
+    font-family: Helvetica;
+    font-size: 20px;
+}
+/* 
+#submitRegistration:hover:after{
+    content: 'One of us! One of us!';
+} */
+
+#logout {
+    background: #3498db;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    -webkit-box-shadow: 0px 1px 3px #666666;
+    -moz-box-shadow: 0px 1px 3px #666666;
+    box-shadow: 0px 1px 3px #666666;
+    font-family: Georgia;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    width: 500px;
+    display: inline-block;
+  }
+
+#logout:hover .jk{
+    text-decoration: none;
+    font-family: Helvetica;
+    transition: .1s;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    /* padding-right: 25px; */
+    transition: all 0.5s;
+  }
+
+  #logout .jk {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  #logout:hover .jk:after{
+    content: ' ....JK! There is no logout. Only Zuul. :) ';
+    right: -20px;
+    transition: 1.0s;
+    display: inline;
+    
+}
+
+#logout:hover .logout { display: none; }
+
+
+
+/* Register button css */
+
+#loginButt {
+    background: #3498db;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    -webkit-box-shadow: 0px 1px 3px #666666;
+    -moz-box-shadow: 0px 1px 3px #666666;
+    box-shadow: 0px 1px 3px #666666;
+    font-family: Georgia;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    /* width: 200px; */
+    display: inline-block;
+  }
+
+  #submitRegistration:hover .jkj{
+    text-decoration: none;
+    font-family: Helvetica;
+    transition: .1s;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    /* padding-right: 25px; */
+    transition: all 0.5s;
+  }
+
+  #submitRegistration.jkj {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  #submitRegistration:hover .jkj:after{
+    content: ' One of us! One of us!';
+    right: -20px;
+    transition: 1.0s;
+    display: inline;
+    
+}
+
+#submitRegistration:hover .submit { display: none; }
+
+
+
+
+/* Login button style */
+
+#loginDash {
+    background: #3498db;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    -webkit-box-shadow: 0px 1px 3px #666666;
+    -moz-box-shadow: 0px 1px 3px #666666;
+    box-shadow: 0px 1px 3px #666666;
+    font-family: Georgia;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    /* width: 200px; */
+    display: inline-block;
+  }
+
+  #loginDash:hover .jkjk{
+    text-decoration: none;
+    font-family: Helvetica;
+    transition: .1s;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    /* padding-right: 25px; */
+    transition: all 0.5s;
+  }
+
+  #loginDash.jkjk {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  #loginDash:hover .jkjk:after{
+    content: 'HA!... Nerd.';
+    right: -20px;
+    transition: 1.0s;
+    display: inline;
+    
+}
+
+#loginDash:hover .login { display: none; }
+
+/* Nav */
+
+.btn-group .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+}
+
+.btn-group .button:hover {
+    background-color: #3e8e41;
+}
+
+
+
+/* Movie Search button style */
+
+#searchMovieInformation {
+    background: #3498db;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    -webkit-box-shadow: 0px 1px 3px #666666;
+    -moz-box-shadow: 0px 1px 3px #666666;
+    box-shadow: 0px 1px 3px #666666;
+    font-family: Georgia;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    /* width: 200px; */
+    display: inline-block;
+  }
+
+  #searchMovieInformation:hover .jkjkj{
+    text-decoration: none;
+    font-family: Helvetica;
+    transition: .1s;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    /* padding-right: 25px; */
+    transition: all 0.5s;
+  }
+
+  #searchMovieInformation.jkjkj {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  #searchMovieInformation:hover .jkjkj:after{
+    content: 'Try Raiders of the Lost Shark.';
+    right: -20px;
+    transition: 1.0s;
+    display: inline;
+    
+}
+
+#searchMovieInformation:hover .searchMovies { display: none; }

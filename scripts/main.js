@@ -1,8 +1,11 @@
 const auth = require("./auth/authorization")
 const search = require("./tmdb")
 const dataHandler = require("./dataHandler")
-
+const watchListDOM = require("./watchlistController")
+const watchToggle = require("./showUnwatched")
 
 auth.init()
+watchListDOM()
+watchToggle()
 auth.logout()
 search.searchBar()

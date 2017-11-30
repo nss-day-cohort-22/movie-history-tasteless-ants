@@ -1,12 +1,18 @@
-#background {
-    height: 200px;
-    background: -webkit-linear-gradient(left, rgba(255,0,0,0), rgba(255,0,0,1)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, rgba(255,0,0,0), rgba(255,0,0,1)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, rgba(255,0,0,0), rgba(255,0,0,1)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); /* Standard syntax (must be last) */
+
+html {
+  color: white;
+  text-shadow: black 2px 2px;
+  font-size: 18px;
+  background-image: url("https://images8.alphacoders.com/436/436471.jpg"); 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: black;
 }
 
-
+h1 {
+  color: white;
+  text-shadow: black 2px 2px;
+}
 
 
 #searchMovieInformation {
@@ -39,6 +45,7 @@
     text-decoration: none;
     font-family: Helvetica;
     font-size: 20px;
+    text-shadow: black 2px 2px;
   }
 
   #loginDash {
@@ -71,6 +78,7 @@
     text-decoration: none;
     font-family: Helvetica;
     font-size: 20px;
+    text-shadow: black 2px 2px;
   }
 
   #submitRegistration {
@@ -104,6 +112,7 @@
     text-decoration: none;
     font-family: Helvetica;
     font-size: 20px;
+    text-shadow: black 2px 2px;
 }
 /* 
 #submitRegistration:hover:after{
@@ -137,6 +146,7 @@
     position: relative;
     /* padding-right: 25px; */
     transition: all 0.5s;
+    text-shadow: black 2px 2px;
   }
 
   #logout .jk {
@@ -259,20 +269,21 @@
 
 /* Nav */
 
-.btn-group .button {
-    background-color: #4CAF50; /* Green */
+#nav-group .nav{
+    background-color: #3498db;
     border: none;
     color: white;
-    padding: 15px 32px;
+    /* padding: 15px 32px; */
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    /* display: inline-block; */
     font-size: 16px;
     cursor: pointer;
     float: left;
+    box-shadow: 0px 1px 3px #666666;
 }
 
-.btn-group .button:hover {
+#nav-group .nav:hover {
     background-color: #3e8e41;
 }
 

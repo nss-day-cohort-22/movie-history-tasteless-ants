@@ -145,7 +145,7 @@ h1 {
     display: inline-block;
     position: relative;
     /* padding-right: 25px; */
-    transition: all 0.5s;
+    transition: all 0.2s;
     text-shadow: black 2px 2px;
   }
 
@@ -196,20 +196,20 @@ h1 {
     display: inline-block;
     position: relative;
     /* padding-right: 25px; */
-    transition: all 0.5s;
+    transition: all 0.2s;
   }
 
   #submitRegistration.jkj {
     cursor: pointer;
     display: inline-block;
     position: relative;
-    transition: 0.5s;
+    transition: 0.2s;
   }
 
   #submitRegistration:hover .jkj:after{
     content: ' One of us! One of us!';
     right: -20px;
-    transition: 1.0s;
+    transition: 0.2s;
     display: inline;
     
 }
@@ -247,20 +247,20 @@ h1 {
     display: inline-block;
     position: relative;
     /* padding-right: 25px; */
-    transition: all 0.5s;
+    transition: all 0.2s;
   }
 
   #loginDash.jkjk {
     cursor: pointer;
     display: inline-block;
     position: relative;
-    transition: 0.5s;
+    transition: 0.2s;
   }
 
   #loginDash:hover .jkjk:after{
     content: 'HA!... Nerd.';
     right: -20px;
-    transition: 1.0s;
+    transition: 0.2s;
     display: inline;
     
 }
@@ -268,6 +268,10 @@ h1 {
 #loginDash:hover .login { display: none; }
 
 /* Nav */
+
+#nav-group{
+  text-align: center;
+}
 
 #nav-group .nav{
     background-color: #3498db;
@@ -279,12 +283,11 @@ h1 {
     /* display: inline-block; */
     font-size: 16px;
     cursor: pointer;
-    float: left;
     box-shadow: 0px 1px 3px #666666;
 }
 
 #nav-group .nav:hover {
-    background-color: #3e8e41;
+    background-color: purple;
 }
 
 
@@ -317,20 +320,20 @@ h1 {
     display: inline-block;
     position: relative;
     /* padding-right: 25px; */
-    transition: all 0.5s;
+    transition: all 0.2s;
   }
 
   #searchMovieInformation.jkjkj {
     cursor: pointer;
     display: inline-block;
     position: relative;
-    transition: 0.5s;
+    transition: 0.2s;
   }
 
   #searchMovieInformation:hover .jkjkj:after{
     content: 'Try Raiders of the Lost Shark.';
     right: -20px;
-    transition: 1.0s;
+    transition: 0.2s;
     display: inline;
     
 }
